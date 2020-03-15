@@ -5,12 +5,13 @@ include conf/machine/include/imx-base.inc
 include conf/machine/include/tune-cortexa7.inc
 
 
-IMAGE_FSTYPES = "tar.bz2 ext4 sdcard ubifs"
+IMAGE_FSTYPES = "tar.bz2 ext4 ubifs wic.gz"
 
 MACHINE_FEATURES += "wifi"
 KERNEL_IMAGETYPE = "uImage"
 
 PREFERRED_PROVIDER_virtual/kernel = "engicam-linux-fslc"
+PREFERRED_VERSION_linux-fslc = "5.4%"
 PREFERRED_PROVIDER_u-boot = "u-boot-eng"
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-eng"
 
