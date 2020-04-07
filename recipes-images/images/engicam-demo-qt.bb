@@ -3,7 +3,7 @@ DESCRIPTION = "Engicam image with QT5 demo image for Frame Buffer"
 LICENSE = "MIT"
 
 inherit core-image
-inherit distro_features_check
+inherit features_check
 inherit populate_sdk
 inherit populate_sdk_${@bb.utils.contains('MACHINEOVERRIDES', 'icoremx6', 'qt5_icore', 'qt5_geam6ul', d)}
 
