@@ -1192,8 +1192,30 @@ CONFIG_MTD_SST25L=y
 # CONFIG_MTD_DOCG3 is not set
 # end of Self-contained MTD device drivers
 
+CONFIG_MTD_NAND_CORE=y
 # CONFIG_MTD_ONENAND is not set
-# CONFIG_MTD_RAW_NAND is not set
+CONFIG_MTD_NAND_ECC_SW_HAMMING=y
+# CONFIG_MTD_NAND_ECC_SW_HAMMING_SMC is not set
+CONFIG_MTD_RAW_NAND=y
+# CONFIG_MTD_NAND_ECC_SW_BCH is not set
+
+#
+# Raw/parallel NAND flash controllers
+#
+# CONFIG_MTD_NAND_DENALI_DT is not set
+# CONFIG_MTD_NAND_BRCMNAND is not set
+CONFIG_MTD_NAND_GPMI_NAND=y
+# CONFIG_MTD_NAND_VF610_NFC is not set
+CONFIG_MTD_NAND_MXC=y
+# CONFIG_MTD_NAND_MXIC is not set
+# CONFIG_MTD_NAND_GPIO is not set
+# CONFIG_MTD_NAND_PLATFORM is not set
+
+#
+# Misc
+#
+# CONFIG_MTD_NAND_NANDSIM is not set
+# CONFIG_MTD_NAND_DISKONCHIP is not set
 # CONFIG_MTD_SPI_NAND is not set
 
 #
