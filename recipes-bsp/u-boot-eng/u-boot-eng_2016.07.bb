@@ -20,7 +20,7 @@ S = "${WORKDIR}/git"
 inherit fsl-u-boot-localversion
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-COMPATIBLE_MACHINE = "(mx6|mx6ul)"
+COMPATIBLE_MACHINE = "(mx6|mx6ul|microgea)"
 
 do_patch_prepend() {
     os.system("mv ${S}/../Engicam.bmp ${S}/tools/logos/");

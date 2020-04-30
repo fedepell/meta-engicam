@@ -12,7 +12,7 @@ inherit fsl-u-boot-localversion
 SRC_URI += "file://default-gcc.patch"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-COMPATIBLE_MACHINE = "(mx6|mx6ul)"
+COMPATIBLE_MACHINE = "(mx6|mx6ul|microgea)"
 
 S = "${WORKDIR}/git"
 
