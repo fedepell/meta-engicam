@@ -16,6 +16,7 @@ include u-boot-eng.inc
 
 
 S = "${WORKDIR}/git"
+SRC_URI += "file://0003-Add-target-to-generate-initial-env.patch"
 
 inherit fsl-u-boot-localversion
 

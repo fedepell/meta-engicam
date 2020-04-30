@@ -1,0 +1,23 @@
+From: Federico Pellegrin <fede@evolware.org>
+Date: Thu, 30 Apr 2020 03:36:36 +0200
+Subject: [PATCH] U-boot initial env generation backport for 2016.07
+
+diff -ruN a/Makefile b/Makefile
+--- a/Makefile	2020-04-29 18:27:02.296184236 +0200
++++ b/Makefile	2020-04-30 03:36:06.044090103 +0200
+@@ -1594,6 +1594,15 @@
+ 	$(build)=$(build-dir) $(@:.ko=.o)
+ 	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.modpost
+ 
++
++quiet_cmd_genenv = GENENV $@
++cmd_genenv = $(OBJCOPY) --dump-section .rodata.default_environment=$@ common/env_common.o; \
++	sed --in-place -e 's/\x00/\x0A/g' $@
++
++u-boot-initial-env: u-boot.bin
++	$(call if_changed,genenv)
++
++
+ # FIXME Should go into a make.lib or something
+ # ===========================================================================
+ 
