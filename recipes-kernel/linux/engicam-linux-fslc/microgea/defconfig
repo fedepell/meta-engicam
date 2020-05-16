@@ -525,7 +525,7 @@ CONFIG_CPU_IDLE_GOV_MENU=y
 #
 # ARM CPU Idle Drivers
 #
-# CONFIG_ARM_CPUIDLE is not set
+CONFIG_ARM_CPUIDLE=y
 # end of ARM CPU Idle Drivers
 # end of CPU Idle
 # end of CPU Power Management
@@ -4824,8 +4824,8 @@ CONFIG_ARM_PMU=y
 # CONFIG_DAX is not set
 CONFIG_NVMEM=y
 CONFIG_NVMEM_SYSFS=y
-# CONFIG_NVMEM_IMX_IIM is not set
-# CONFIG_NVMEM_IMX_OCOTP is not set
+CONFIG_NVMEM_IMX_IIM=y
+CONFIG_NVMEM_IMX_OCOTP=y
 # CONFIG_NVMEM_VF610_OCOTP is not set
 # CONFIG_NVMEM_SNVS_LPGPR is not set
 
