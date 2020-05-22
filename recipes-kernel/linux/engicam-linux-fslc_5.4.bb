@@ -16,4 +16,4 @@ PV = "5.4.31+git${SRCPV}"
 SRCBRANCH = "5.4.x+fslc"
 SRCREV = "bde0c4ce26b13fe6d477d3ded90370964404a61f"
 
-COMPATIBLE_MACHINE = "(mxs|mx5|mx6|vf|use-mainline-bsp|microgea)"
+COMPATIBLE_MACHINE = "(mxs|mx5|mx6|vf|use-mainline-bsp|microgea|gwcv4)"
