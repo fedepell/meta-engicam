@@ -12,7 +12,7 @@ SRCREV = "eb36ac2e1669d8e7dd1b23bc302b12e26077ed0c"
 inherit fsl-u-boot-localversion
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-COMPATIBLE_MACHINE = "(mx6|mx6ul|microgea)"
+COMPATIBLE_MACHINE = "(mx6|mx6ul|microgea|gwcv4)"
 
 S = "${WORKDIR}/git"
 
