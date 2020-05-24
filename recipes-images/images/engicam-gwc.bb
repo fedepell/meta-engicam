@@ -27,7 +27,6 @@ IMAGE_INSTALL_append = " \
 	dosfstools \
 	e2fsprogs \
 	usbutils \
-	cpufrequtils \
 	iw \
 	wpa-supplicant \
 	opkg \
@@ -35,20 +34,30 @@ IMAGE_INSTALL_append = " \
 	json-c \
 	ppp \
 	lua \
+	luaposix \
 	curl \
 	libmodbus \
 	firmware-imx-vpu-imx6q \
 	openvpn \
 	lighttpd \
 	ntp \
+	procps \
+	xz \
+	wget \
+	tar \
+	sysstat \
+	screen \
+	msmtp \
+	lsof \
+	iptables \
+	gzip \
+	grep \
+	bzip2 \
+	bash \
+	dos2unix \
+	nano \
+	traceroute \
 "
-
-#	lwb-bcm4343w-fw
-#	bluez5
-#	brcm-patchram-plus
-#	obexftp
-#	imx-test
-#	wf111-driver
 
 IMAGE_INSTALL_append_icoremx6 = " \
 	firmware-imx-vpu-imx6q \
