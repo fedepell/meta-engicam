@@ -35,6 +35,9 @@ IMAGE_INSTALL_append = " \
 	ppp \
 	lua \
 	luaposix \
+	luacjson \
+	luasys \
+	luasocket \
 	curl \
 	libmodbus \
 	firmware-imx-vpu-imx6q \
