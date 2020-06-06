@@ -60,6 +60,16 @@ IMAGE_INSTALL_append = " \
 	dos2unix \
 	nano \
 	traceroute \
+	hostapd \
+	iproute2-ss \
+	iproute2-devlink \
+	iproute2-genl \
+	iproute2-ifstat \
+	iproute2-lnstat \
+	iproute2-nstat \
+	iproute2-rtacct \
+	iproute2-tc \
+	iproute2-tipc \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
