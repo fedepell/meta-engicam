@@ -33,6 +33,7 @@ IMAGE_INSTALL_append = " \
 	opkg-collateral \
 	json-c \
 	ppp \
+	ppp-tools \
 	lua \
 	luaposix \
 	luacjson \
@@ -70,6 +71,13 @@ IMAGE_INSTALL_append = " \
 	iproute2-rtacct \
 	iproute2-tc \
 	iproute2-tipc \
+	libxml2-utils \
+	sqlite3 \
+	util-linux \
+	avahi-utils \
+	usb-modeswitch \
+	htop \
+	dhcp-client \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
