@@ -1,6 +1,6 @@
 diff -ruN a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
---- a/arch/arm/boot/dts/Makefile	2020-05-21 04:41:06.643391595 +0200
-+++ b/arch/arm/boot/dts/Makefile	2020-05-21 04:42:17.210553158 +0200
+--- a/arch/arm/boot/dts/Makefile	2020-06-13 06:36:39.489261089 +0200
++++ b/arch/arm/boot/dts/Makefile	2020-05-30 19:11:03.453301362 +0200
 @@ -595,7 +595,8 @@
  	imx6ull-phytec-segin-ff-rdk-nand.dtb \
  	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
@@ -13,7 +13,7 @@ diff -ruN a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
  	imx7d-colibri-emmc-eval-v3.dtb \
 diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4.dts
 --- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4.dts	1970-01-01 01:00:00.000000000 +0100
-+++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4.dts	2020-05-22 06:26:55.439540833 +0200
++++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4.dts	2020-06-19 09:00:03.201983728 +0200
 @@ -0,0 +1,515 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
@@ -49,7 +49,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4.dts b/arch/arm/boot/dts/micr
 +		linux,cma {
 +			compatible = "shared-dma-pool";
 +			reusable;
-+			size = <0x4000000>;
++			size = <0x800000>;
 +			linux,cma-default;
 +		};
 +	};
@@ -525,8 +525,8 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4.dts b/arch/arm/boot/dts/micr
 +		pinctrl_gpio_leds: gpioledsgrp {
 +			fsl,pins = <
 +				MX6UL_PAD_CSI_DATA02__GPIO4_IO23		0x1b0b0	/* LED ON OFF */
-+				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19			0x1b0b0	/* LED SERVER */
-+				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20			0x1b0b0	/* LED ALARM  */
++				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19			0x17058	/* LED SERVER */
++				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20			0x17058	/* LED ALARM  */
 +			>;
 +		};
 +};
