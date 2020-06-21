@@ -3,7 +3,7 @@
 
 require recipes-kernel/linux/linux-imx.inc
 
-DEPENDS += "lzop-native bc-native"
+DEPENDS += "lzop-native bc-native linux-firmware"
 
 SRC_URI = "git://github.com/Freescale/linux-fslc.git;branch=${SRCBRANCH} \
            file://0001-add-dts.patch \
@@ -33,3 +33,7 @@ KERNEL_EXTRA_ARGS_mx6sx += "LOADADDR=0x80008000"
 LINUX_VERSION_EXTENSION="-engicam"
 
 COMPATIBLE_MACHINE = "(mx6|mx6ul|mx6sx)"
+
+kernel_do_configure_append() {
+    echo "CONFIG_EXTRA_FIRMWARE_DIR=\"${WORKDIR}/recipe-sysroot/lib/firmware/\"" >> ${B}/.config
+}
