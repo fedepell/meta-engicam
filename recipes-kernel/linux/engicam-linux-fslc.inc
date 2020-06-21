@@ -3,7 +3,7 @@
 
 require recipes-kernel/linux/linux-imx.inc
 
-DEPENDS += "lzop-native bc-native linux-firmware"
+DEPENDS += "lzop-native bc-native linux-firmware wireless-regdb"
 
 SRC_URI = "git://github.com/Freescale/linux-fslc.git;branch=${SRCBRANCH} \
            file://0001-add-dts.patch \
