@@ -44,6 +44,9 @@ IMAGE_INSTALL_append = " \
 	firmware-imx-vpu-imx6q \
 	openvpn \
 	lighttpd \
+	lighttpd-module-openssl \
+	lighttpd-module-rewrite \
+	lighttpd-module-redirect \
 	ntp \
 	procps \
 	xz \
