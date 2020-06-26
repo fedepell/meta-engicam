@@ -81,6 +81,7 @@ IMAGE_INSTALL_append = " \
 	usb-modeswitch \
 	htop \
 	dhcp-client \
+	libmicrohttpd \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
