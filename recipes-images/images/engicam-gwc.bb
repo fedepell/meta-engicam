@@ -47,6 +47,12 @@ IMAGE_INSTALL_append = " \
 	lighttpd-module-openssl \
 	lighttpd-module-rewrite \
 	lighttpd-module-redirect \
+  lighttpd-module-alias \
+  lighttpd-module-auth \
+  lighttpd-module-authn_file \
+  lighttpd-module-evasive \
+  lighttpd-module-usertrack \
+  libmicrohttpd \
 	ntp \
 	procps \
 	xz \
