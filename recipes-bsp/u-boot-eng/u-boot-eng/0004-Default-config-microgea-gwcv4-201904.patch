@@ -1,9 +1,9 @@
 From: Federico Pellegrin <fede@evolware.org>
-Date: Wed, Sep  16 06:23:36 +0200
+Date: Wed, Sep  19 05:30:36 +0200
 Subject: [PATCH] U-boot default values compatible with previous starter kit distribution
 diff -ruN c/include/configs/microgea-mx6ull.h d/include/configs/microgea-mx6ull.h
 --- c/include/configs/microgea-mx6ull.h	2020-09-16 06:21:20.556653804 +0200
-+++ d/include/configs/microgea-mx6ull.h	2020-09-16 06:16:07.069343021 +0200
++++ d/include/configs/microgea-mx6ull.h	2020-09-19 05:30:07.069343021 +0200
 @@ -57,7 +57,13 @@
  #define CONFIG_SERIAL_TAG
  #define CONFIG_FASTBOOT_USB_DEV 0
@@ -15,7 +15,7 @@ diff -ruN c/include/configs/microgea-mx6ull.h d/include/configs/microgea-mx6ull.
 +#define CONFIG_IPADDR		192.168.2.75
 +#define CONFIG_NETMASK		255.255.255.0
 +
-+#define CONFIG_DEFAULT_FDT_FILE	"microgea-mx6ull-gwcv4.dtb"
++#define CONFIG_DEFAULT_FDT_FILE	"microgea-mx6ull-gwcv4-dts1.dtb"
  
  #ifdef CONFIG_NAND_BOOT
  	#define BOOTCMD		"bootcmd=run bootcmd_ubi\0"
