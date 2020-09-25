@@ -53,7 +53,7 @@ IMAGE_INSTALL_append = " \
 	lighttpd-module-evasive \
 	lighttpd-module-usertrack \
 	libmicrohttpd \
-	ntp \
+	ntpdate \
 	procps \
 	xz \
 	wget \
@@ -87,6 +87,10 @@ IMAGE_INSTALL_append = " \
 	usb-modeswitch \
 	htop \
 	dhcp-client \
+	bind-utils \
+	netcat \
+	iputils \
+	coreutils \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
