@@ -1,0 +1,11 @@
+diff -ruN c/scripts/dtc/dtc-lexer.l d/scripts/dtc/dtc-lexer.l
+--- c/scripts/dtc/dtc-lexer.l	2020-09-25 09:24:30.830700560 +0200
++++ d/scripts/dtc/dtc-lexer.l	2020-09-25 09:25:38.480660780 +0200
+@@ -38,7 +38,6 @@
+ #include "srcpos.h"
+ #include "dtc-parser.tab.h"
+ 
+-YYLTYPE yylloc;
+ extern bool treesource_error;
+ 
+ /* CAUTION: this will stop working if we ever use yyless() or yyunput() */

@@ -8,6 +8,7 @@ DEPENDS += "flex-native bison-native"
 SRC_URI = "git://github.com/engicam-stable/u-boot-engicam_2019.04;protocol=git;branch=u-boot-engicam_2019.04_4.19.35"
 
 SRCREV = "eb36ac2e1669d8e7dd1b23bc302b12e26077ed0c"
+SRC_URI += "file://gcc10_build_fix.patch"
 
 inherit fsl-u-boot-localversion
 
