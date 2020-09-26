@@ -1,0 +1,21 @@
+diff -ruN c/include/configs/microgea-mx6ull.h d/include/configs/microgea-mx6ull.h
+--- c/include/configs/microgea-mx6ull.h	2020-09-25 08:34:53.690529776 +0200
++++ d/include/configs/microgea-mx6ull.h	2020-09-26 09:42:05.640450139 +0200
+@@ -77,13 +77,14 @@
+ 		"bootcmd_mmc=setenv mmcdev 0; run bootargs_mmc; run loadfdt; run loaduImage; bootm ${loadaddr} - ${fdt_addr}\0"	\
+ 		"bootargs_net=run bootargs_base; setenv bootargs ${bootargs_tmp} root=/dev/nfs ip=dhcp nfsroot=${serverip}:${nfsroot},v3,tcp\0" \
+ 		"bootcmd_net="   "run bootargs_net; tftp uImage; tftp ${fdt_addr} uImage.dtb; bootm ${loadaddr} - ${fdt_addr}\0"	\
+-        "bootargs_ubi=run bootargs_base; setenv bootargs ${bootargs_tmp} ${mtdparts} ubi.mtd=3 root=ubi0:rootfs rootfstype=ubifs\0"	\
+-        "bootcmd_ubi=run bootargs_ubi;nand read ${loadaddr} 0x400000 0x800000;nand read ${fdt_addr} 0xc00000 0x100000;bootm ${loadaddr} - ${fdt_addr}\0" \
++        "bootargs_ubi=run bootargs_base;setenv bootargs ${bootargs_tmp} ${mtdparts} ubi.mtd=3 ubi.mtd=4 root=ubi0:rootfs rootfstype=ubifs\0"	\
++        "bootcmd_ubi=run bootargs_ubi;nand read ${loadaddr} 0x400000 0x800000;nand read ${fdt_addr} 0xc00000 0x80000;bootm ${loadaddr} - ${fdt_addr}\0" \
+ 		BOOTCMD	\
+ 		"loadfdt=fatload mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${fdt_file}\0" \
+ 		"mmcpart=1\0"					\
+ 		"loaduImage=fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} uImage;\0"	\
+-		"mtdparts=mtdparts=gpmi-nand:4m(boot),8m(kernel),1m(dtb),-(rootfs)\0" \
++		"mtdparts=mtdparts=gpmi-nand:4m(boot),8m(kernel),512k(dtb),130m(rootfs),-(data)\0" \
++		"mtdids=nand0=gpmi-nand\0" \
+ 		"fdt_file=" CONFIG_DEFAULT_FDT_FILE "\0" 	\
+ 		"netdev=eth0\0" \
+ 		"ethprime=FEC0\0" \
