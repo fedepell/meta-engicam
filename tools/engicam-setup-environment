@@ -169,8 +169,8 @@ PACKAGECONFIG_append_pn-qtbase = " fontconfig "
 
 EOF
 
-if [ "$MACHINE" == "geamx6ul" ] || [ "$MACHINE" == "isiot-geamx6ul" ] || [ "$MACHINE" == "geamx6ull" ] || [ "$MACHINE" == "microgea" ] || [ "$MACHINE" == "microgea-epd" ] || [ "$MACHINE" == "microdev" ]; then
-    cat >> conf/local.conf <<EOF
+if [ "$MACHINE" = "geamx6ul" ] || [ "$MACHINE" = "isiot-geamx6ul" ] || [ "$MACHINE" = "geamx6ull" ] || [ "$MACHINE" = "microgea" ] || [ "$MACHINE" = "microgea-epd" ] || [ "$MACHINE" == "microdev" ]; then
+    echo '
 IMAGE_ROOTFS_SIZE = "2097152"
 IMAGE_OVERHEAD_FACTOR = "1.0"
 PACKAGECONFIG_remove_pn-qtbase  = " gl "
@@ -179,13 +179,13 @@ QT_CONFIG_FLAGS_remove = " -eglfs "
 QT_CONFIG_FLAGS_append =" -no-opengl "
 DISTRO_FEATURES_remove = " x11 wayland opengl gl"
 STARTUPDEMO = "resistive"
-EOF
+' >> conf/local.conf
 else
-    cat >> conf/local.conf <<EOF
+    echo '
 IMAGE_ROOTFS_SIZE = "2097152"
 DISTRO_FEATURES_remove = " x11 wayland"
 STARTUPDEMO = "resistive"
-EOF
+' >> conf/local.conf
 fi
 
     # Change settings according environment
