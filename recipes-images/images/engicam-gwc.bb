@@ -118,4 +118,5 @@ IMAGE_INSTALL_append_microdev = " \
 "
 
 
+TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev"
 

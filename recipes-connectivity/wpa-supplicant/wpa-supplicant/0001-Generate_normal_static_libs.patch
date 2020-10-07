@@ -1,0 +1,22 @@
+diff -ruN a/src/common/Makefile b/src/common/Makefile
+--- a/src/common/Makefile	2020-10-06 17:39:17.408219241 +0200
++++ b/src/common/Makefile	2020-10-06 17:39:27.961231134 +0200
+@@ -23,6 +23,6 @@
+ 	wpa_common.o
+ 
+ libcommon.a: $(LIB_OBJS)
+-	$(AR) crT $@ $?
++	$(AR) cr $@ $?
+ 
+ -include $(OBJS:%.o=%.d)
+diff -ruN a/src/utils/Makefile b/src/utils/Makefile
+--- a/src/utils/Makefile	2019-08-07 15:25:25.000000000 +0200
++++ b/src/utils/Makefile	2020-10-06 17:39:34.391238382 +0200
+@@ -38,6 +38,6 @@
+ #LIB_OBJS += pcsc_funcs.o
+ 
+ libutils.a: $(LIB_OBJS)
+-	$(AR) crT $@ $?
++	$(AR) cr $@ $?
+ 
+ -include $(OBJS:%.o=%.d)
