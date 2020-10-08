@@ -6,7 +6,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
 
 # The package makefile will create tiny libraries (which need also the .o
 # being also there), patch it to have a normal .a delivery
-SRC_URI+= " file://0001-Generate_normal_static_libs.patch"
+SRC_URI+= " file://0001-Generate_normal_static_libs.patch file://0002-Add_wpa_ctrl_to_static.patch"
 
 # Additional libraries build
 do_compile_append () {

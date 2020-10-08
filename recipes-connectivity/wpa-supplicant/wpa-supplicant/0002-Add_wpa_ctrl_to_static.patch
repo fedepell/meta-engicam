@@ -1,0 +1,12 @@
+diff -ruN a/src/common/Makefile b/src/common/Makefile
+--- a/src/common/Makefile	2020-10-08 13:23:18.172606320 +0200
++++ b/src/common/Makefile	2020-10-08 13:23:42.105780839 +0200
+@@ -20,7 +20,7 @@
+ 	hw_features_common.o \
+ 	ieee802_11_common.o \
+ 	sae.o \
+-	wpa_common.o
++	wpa_common.o wpa_ctrl.o
+ 
+ libcommon.a: $(LIB_OBJS)
+ 	$(AR) cr $@ $?
