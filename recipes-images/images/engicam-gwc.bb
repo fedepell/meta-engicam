@@ -91,6 +91,8 @@ IMAGE_INSTALL_append = " \
 	netcat \
 	iputils \
 	coreutils \
+	yasdi \
+	opendnp3 \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
