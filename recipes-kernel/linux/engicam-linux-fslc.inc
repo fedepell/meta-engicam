@@ -10,7 +10,7 @@ SRC_URI = "git://github.com/Freescale/linux-fslc.git;branch=${SRCBRANCH} \
            file://gen_dts.sh \
            file://defconfig"
 
-LOCALVERSION = "-microgea"
+LOCALVERSION = "-gwcv4"
 
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
@@ -31,7 +31,7 @@ KERNEL_EXTRA_ARGS_mx6ul += "LOADADDR=0x80008000"
 
 KERNEL_EXTRA_ARGS_mx6sx += "LOADADDR=0x80008000"
 
-LINUX_VERSION_EXTENSION="-engicam"
+LINUX_VERSION_EXTENSION="-gwcv4"
 
 COMPATIBLE_MACHINE = "(mx6|mx6ul|mx6sx)"
 
