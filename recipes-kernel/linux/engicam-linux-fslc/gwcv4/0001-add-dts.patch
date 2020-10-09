@@ -1,5 +1,5 @@
 From: Federico Pellegrin <fede@evolware.org>
-Date: Wed, Sep  23 14:03:36 +0200
+Date: Wed, 23 Sep 2020 14:03:36 +0200
 Subject: [PATCH] Add two models of GWCv4 hardware (internally known as DTS1 and DTS2)
 diff -ruN a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
 --- a/arch/arm/boot/dts/Makefile	2020-06-13 06:36:39.489261089 +0200
