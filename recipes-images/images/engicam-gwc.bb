@@ -93,6 +93,7 @@ IMAGE_INSTALL_append = " \
 	coreutils \
 	yasdi \
 	opendnp3 \
+	libnodave \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \

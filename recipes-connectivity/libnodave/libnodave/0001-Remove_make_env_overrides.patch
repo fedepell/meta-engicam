@@ -1,0 +1,35 @@
+diff -ruN a/Makefile b/Makefile
+--- a/Makefile	2013-05-17 22:17:48.000000000 +0200
++++ b/Makefile	2020-10-10 06:47:53.092994446 +0200
+@@ -13,15 +13,15 @@
+ # To test with g++ which does stricter type checking:
+ #
+ ##CC=g++ 
+-CFLAGS=-Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN
+-CTFLAGS=-Wall -Winline -fPID -DLINUX -DDAVE_LITTLE_ENDIAN
+-CPPFLAGS=-Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN
++#CFLAGS=-Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN
++#CTFLAGS=-Wall -Winline -fPID -DLINUX -DDAVE_LITTLE_ENDIAN
++#CPPFLAGS=-Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN
+ #
+ # The following is needed to enable workarounds for statements that do
+ # not work on (some?) ARM processors:
+ # It also helped on some machine running HP-UX.
+ #
+-#CFLAGS+=-DARM_FIX 
++CFLAGS+=-DARM_FIX 
+ 
+ 
+ #-static -Wl,static -lc.a -static -lpthread.a -nostdlib 
+@@ -50,9 +50,8 @@
+ 
+ all: $(PROGRAMS) $(LIBRARIES)
+ install: libnodave.so
+-	cp libnodave.so /usr/lib
+-	cp nodave.h /usr/include
+-	ldconfig
++	cp libnodave.so ${PREFIX}/usr/lib
++	cp nodave.h ${PREFIX}/usr/include
+ dynamic: $(DYNAMIC_PROGRAMS)
+ usb: testUSB
+ 
