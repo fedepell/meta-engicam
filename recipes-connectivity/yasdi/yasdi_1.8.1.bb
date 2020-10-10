@@ -24,4 +24,7 @@ do_install_append() {
   install -m 644 ${WORKDIR}/git/smalib/*.h ${D}/usr/include/yasdi
   install -m 644 ${WORKDIR}/git/smalib/*.h ${D}/usr/include/yasdi
   install -m 644 ${WORKDIR}/git/core/*.h ${D}/usr/include/yasdi
+  install -m 644 ${WORKDIR}/git/projects/generic-cmake/incprj/*.h ${D}/usr/include/yasdi
+  install -m 644 ${WORKDIR}/git/os/*.h ${D}/usr/include/yasdi
+  install -m 644 ${WORKDIR}/git/protocol/*.h ${D}/usr/include/yasdi
 }
