@@ -47,13 +47,13 @@ IMAGE_INSTALL_append = " \
 	lighttpd-module-openssl \
 	lighttpd-module-rewrite \
 	lighttpd-module-redirect \
-  lighttpd-module-alias \
-  lighttpd-module-auth \
-  lighttpd-module-authn_file \
-  lighttpd-module-evasive \
-  lighttpd-module-usertrack \
-  libmicrohttpd \
-	ntp \
+	lighttpd-module-alias \
+	lighttpd-module-auth \
+	lighttpd-module-authn-file \
+	lighttpd-module-evasive \
+	lighttpd-module-usertrack \
+	libmicrohttpd \
+	ntpdate \
 	procps \
 	xz \
 	wget \
@@ -87,6 +87,13 @@ IMAGE_INSTALL_append = " \
 	usb-modeswitch \
 	htop \
 	dhcp-client \
+	bind-utils \
+	netcat \
+	iputils \
+	coreutils \
+	yasdi \
+	opendnp3 \
+	libnodave \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
@@ -114,4 +121,5 @@ IMAGE_INSTALL_append_microdev = " \
 "
 
 
+TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev"
 

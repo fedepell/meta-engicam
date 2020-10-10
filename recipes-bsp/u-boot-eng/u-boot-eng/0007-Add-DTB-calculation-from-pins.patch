@@ -1,0 +1,23 @@
+diff -ruN d/include/configs/microgea-mx6ull.h e/include/configs/microgea-mx6ull.h
+--- d/include/configs/microgea-mx6ull.h	2020-09-26 09:42:05.640450139 +0200
++++ e/include/configs/microgea-mx6ull.h	2020-10-03 09:11:32.210642572 +0200
+@@ -78,8 +78,10 @@
+ 		"bootargs_net=run bootargs_base; setenv bootargs ${bootargs_tmp} root=/dev/nfs ip=dhcp nfsroot=${serverip}:${nfsroot},v3,tcp\0" \
+ 		"bootcmd_net="   "run bootargs_net; tftp uImage; tftp ${fdt_addr} uImage.dtb; bootm ${loadaddr} - ${fdt_addr}\0"	\
+         "bootargs_ubi=run bootargs_base;setenv bootargs ${bootargs_tmp} ${mtdparts} ubi.mtd=3 ubi.mtd=4 root=ubi0:rootfs rootfstype=ubifs\0"	\
+-        "bootcmd_ubi=run bootargs_ubi;nand read ${loadaddr} 0x400000 0x800000;nand read ${fdt_addr} 0xc00000 0x80000;bootm ${loadaddr} - ${fdt_addr}\0" \
++        "bootcmd_ubi=run bootargs_ubi;run setfdtread;nand read ${loadaddr} 0x400000 0x800000;nand read ${fdt_addr} ${fdt_read} 0x10000;bootm ${loadaddr} - ${fdt_addr}\0" \
+ 		BOOTCMD	\
++        "getpinval=mw.l 0x209C004 0x0;md.l 0x209c008 1;setexpr.b GWCHI *0x209c00b \\\\& 0xC0;setexpr GWCHW ${GWCHI} \\\\/ 0x20;setexpr.b GWCLO *0x209c00a \\\\\& 0x80;setexpr GWCHI ${GWCLO} \\\\/ 0x80;setexpr GWCHW ${GWCHW} \\\\+ ${GWCHI}\0" \
++        "setfdtread=run getpinval;print GWCHW;setexpr fdt_offset ${GWCHW} \\\\* 0x10000;setexpr fdt_read ${fdt_offset} \\\\+ 0xc00000;\0" \
+ 		"loadfdt=fatload mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${fdt_file}\0" \
+ 		"mmcpart=1\0"					\
+ 		"loaduImage=fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} uImage;\0"	\
+@@ -89,6 +91,7 @@
+ 		"netdev=eth0\0" \
+ 		"ethprime=FEC0\0" \
+ 		"nfsroot=/nfs_icore\0"	\
++                "fdt_read=0xc00000\0" \
+ 		"fdt_addr=0x83000000\0"	\
+ 		"fdt_high=0xffffffff\0"
+ 

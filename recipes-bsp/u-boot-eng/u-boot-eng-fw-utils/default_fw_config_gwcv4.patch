@@ -1,0 +1,21 @@
+diff -ruN a/tools/env/fw_env.config b/tools/env/fw_env.config
+--- a/tools/env/fw_env.config	2020-05-30 20:20:44.817515579 +0200
++++ b/tools/env/fw_env.config	2020-09-25 09:22:24.082775368 +0200
+@@ -8,8 +8,8 @@
+ 
+ # NOR example
+ # MTD device name	Device offset	Env. size	Flash sector size	Number of sectors
+-/dev/mtd1		0x0000		0x4000		0x4000
+-/dev/mtd2		0x0000		0x4000		0x4000
++#/dev/mtd1		0x0000		0x4000		0x4000
++#/dev/mtd2		0x0000		0x4000		0x4000
+ 
+ # MTD SPI-dataflash example
+ # MTD device name	Device offset	Env. size	Flash sector size	Number of sectors
+@@ -36,3 +36,6 @@
+ # UBI volume by name
+ #/dev/ubi0:env		0x0		0x1f000		0x1f000
+ #/dev/ubi0:env-redund	0x0		0x1f000		0x1f000
++
++# GWC U-Boot Environment configuration
++/dev/mtd0		0x1C0000	0x20000		0x40000
