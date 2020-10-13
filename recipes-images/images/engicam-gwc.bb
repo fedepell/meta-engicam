@@ -4,7 +4,7 @@ LICENSE = "MIT"
 
 inherit core-image
 
-EXTRA_IMAGE_FEATURES = " debug-tweaks ssh-server-openssh tools-debug package-management "
+EXTRA_IMAGE_FEATURES = " debug-tweaks ssh-server-openssh package-management "
 
 
 IMAGE_INSTALL_append = " \
@@ -12,6 +12,8 @@ IMAGE_INSTALL_append = " \
 	engicam-mtd-script \
 	engicam-emmc-script \
 	engicam-emmc-tools \
+	gdbserver \
+	strace \
 	iproute2 \
 	canutils \
 	cantest \
@@ -122,4 +124,3 @@ IMAGE_INSTALL_append_microdev = " \
 
 
 TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev"
-
