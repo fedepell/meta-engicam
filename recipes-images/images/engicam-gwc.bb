@@ -105,23 +105,4 @@ IMAGE_INSTALL_append_icoremx6 = " \
 	wf111-driver \
 "
 
-IMAGE_INSTALL_append_isiot = " \
-	engicam-isiot-startup \
-	lwb-bcm4343w-fw \
-	bluez5 \
-	brcm-patchram-plus \
-	obexftp \
-"
-
-IMAGE_INSTALL_append_microdev = " \
-	engicam-microdev-startup \
-        lwb-bcm4343w-fw \
-        bluez5 \
-        brcm-patchram-plus \
-        obexftp \
-	hostapd \
-	ppp \
-"
-
-
 TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev"
