@@ -18,7 +18,7 @@ diff -ruN a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
 diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts
 --- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	1970-01-01 01:00:00.000000000 +0100
 +++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	2020-09-23 14:01:26.743422010 +0200
-@@ -0,0 +1,482 @@
+@@ -0,0 +1,467 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
 + *
@@ -129,9 +129,6 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts
 +		ethphy0: ethernet-phy@0 {
 +			compatible = "ethernet-phy-ieee802.3-c22";
 +			reg = <0>;
-+			// micrel,led-mode = <0>;
-+			// clocks = <&clks IMX6UL_CLK_ENET_REF>;
-+			// clock-names = "rmii-ref";
 +		};
 +	};
 +};
@@ -176,9 +173,6 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_uart2>;
 +	fsl,uart-has-rtscts;
-+	/* for DTE mode, add below change */
-+	// fsl,dte-mode;
-+	// pinctrl-0 = <&pinctrl_uart2dte>;
 +	status = "okay";
 +};
 +
@@ -342,7 +336,6 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts
 +		>;
 +	};
 +
-+
 +		pinctrl_enet1: enet1grp {
 +			fsl,pins = <
 +				MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN				0x1b0b0
@@ -396,15 +389,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts
 +			fsl,pins = <
 +				MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
 +				MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1
-+				MX6UL_PAD_UART3_TX_DATA__UART2_DCE_CTS	0x1b0b1
-+			>;
-+		};
-+
-+		pinctrl_uart2dte: uart2dtegrp {
-+			fsl,pins = <
-+				MX6UL_PAD_UART2_TX_DATA__UART2_DTE_RX	0x1b0b1
-+				MX6UL_PAD_UART2_RX_DATA__UART2_DTE_TX	0x1b0b1
-+				MX6UL_PAD_UART3_RX_DATA__UART2_DTE_CTS	0x1b0b1
++				MX6UL_PAD_UART2_CTS_B__UART2_DCE_CTS	0x1b0b1
 +			>;
 +		};
 +
@@ -504,7 +489,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts
 diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts
 --- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	1970-01-01 01:00:00.000000000 +0100
 +++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	2020-09-23 14:01:45.999379085 +0200
-@@ -0,0 +1,516 @@
+@@ -0,0 +1,494 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
 + *
@@ -623,17 +608,11 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
 +		ethphy0: ethernet-phy@0 {
 +			compatible = "ethernet-phy-ieee802.3-c22";
 +			reg = <0>;
-+			// micrel,led-mode = <0>;
-+			// clocks = <&clks IMX6UL_CLK_ENET_REF>;
-+			// clock-names = "rmii-ref";
 +		};
 +
 +		ethphy1: ethernet-phy@1 {
 +			compatible = "ethernet-phy-ieee802.3-c22";
 +			reg = <1>;
-+			// micrel,led-mode = <0>;
-+			// clocks = <&clks IMX6UL_CLK_ENET2_REF>;
-+			// clock-names = "rmii-ref";
 +		};
 +	};
 +};
@@ -678,9 +657,6 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_uart2>;
 +	fsl,uart-has-rtscts;
-+	/* for DTE mode, add below change */
-+	// fsl,dte-mode;
-+	// pinctrl-0 = <&pinctrl_uart2dte>;
 +	status = "okay";
 +};
 +
@@ -854,10 +830,6 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
 +				MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00		0x1b0b0
 +				MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01		0x1b0b0
 +				MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1		0x4001b031
-+
-+				/* disabled to test correct setup, should be enabled only on enet2 */
-+				/*MX6UL_PAD_GPIO1_IO07__ENET1_MDC						0x1b0b0
-+				MX6UL_PAD_GPIO1_IO06__ENET1_MDIO					0x1b0b0*/
 +			>;
 +		};
 +
@@ -865,7 +837,6 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
 +			fsl,pins = <
 +				MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN					0x1b0b0
 +				MX6UL_PAD_ENET2_RX_ER__GPIO2_IO15						0x1b0b0	/* ENET_nRST */
-+				/* MX6UL_PAD_ENET2_RX_ER__ENET2_RX_ER					0x1b0b0 */
 +				MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00					0x1b0b0
 +				MX6UL_PAD_ENET2_RX_DATA1__ENET2_RDATA01					0x1b0b0
 +				MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN					0x1b0b0
@@ -916,15 +887,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
 +			fsl,pins = <
 +				MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
 +				MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1
-+				MX6UL_PAD_UART3_TX_DATA__UART2_DCE_CTS	0x1b0b1
-+			>;
-+		};
-+
-+		pinctrl_uart2dte: uart2dtegrp {
-+			fsl,pins = <
-+				MX6UL_PAD_UART2_TX_DATA__UART2_DTE_RX	0x1b0b1
-+				MX6UL_PAD_UART2_RX_DATA__UART2_DTE_TX	0x1b0b1
-+				MX6UL_PAD_UART3_RX_DATA__UART2_DTE_CTS	0x1b0b1
++				MX6UL_PAD_UART2_CTS_B__UART2_DCE_CTS  0x1b0b1
 +			>;
 +		};
 +
