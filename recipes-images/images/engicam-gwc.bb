@@ -41,6 +41,8 @@ IMAGE_INSTALL_append = " \
 	luacjson \
 	luasys \
 	luasocket \
+	luasql \
+	luasnmp \
 	curl \
 	libmodbus \
 	firmware-imx-vpu-imx6q \
@@ -97,6 +99,7 @@ IMAGE_INSTALL_append = " \
 	opendnp3 \
 	libnodave \
 	gd \
+	fswebcam
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
