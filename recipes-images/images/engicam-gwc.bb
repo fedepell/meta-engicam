@@ -43,6 +43,8 @@ IMAGE_INSTALL_append = " \
 	luasocket \
 	luasql \
 	luasnmp \
+	lualfs \
+	luaexpat \
 	curl \
 	libmodbus \
 	firmware-imx-vpu-imx6q \
