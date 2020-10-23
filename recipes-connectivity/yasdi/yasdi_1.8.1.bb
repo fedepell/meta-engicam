@@ -1,5 +1,5 @@
 DESCRIPTION = "YASDI SMA library"
-LICENSE = "LGPL"
+LICENSE = "LGPL-2.1"
 HOMEPAGE = "https://www.sma.de/produkte/monitoring-control/yasdi.html"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=7266a93b753b03bc5f00522e65722b79"
 
