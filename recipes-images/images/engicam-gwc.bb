@@ -101,7 +101,7 @@ IMAGE_INSTALL_append = " \
 	opendnp3 \
 	libnodave \
 	gd \
-	fswebcam
+	fswebcam \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
