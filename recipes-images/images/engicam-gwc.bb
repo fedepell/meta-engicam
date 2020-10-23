@@ -58,6 +58,8 @@ IMAGE_INSTALL_append = " \
 	lighttpd-module-authn-file \
 	lighttpd-module-evasive \
 	lighttpd-module-usertrack \
+	lighttpd-module-setenv \
+	lighttpd-module-cgi \
 	libmicrohttpd \
 	ntpdate \
 	procps \
