@@ -60,6 +60,7 @@ IMAGE_INSTALL_append = " \
 	lighttpd-module-usertrack \
 	lighttpd-module-setenv \
 	lighttpd-module-cgi \
+	lighttpd-module-compress \
 	libmicrohttpd \
 	ntpdate \
 	procps \
