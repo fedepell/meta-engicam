@@ -8,6 +8,8 @@ do_install_append() {
 	ln -s /dev/null ${D}/etc/systemd/system/rpcbind.service
 	ln -s /dev/null ${D}/etc/systemd/system/ntpd.service
 	ln -s /dev/null ${D}/etc/systemd/system/rngd.service
-	ln -s /dev/null ${D}/etc/systemd/system/systemd-timesyncd.service	
+	ln -s /dev/null ${D}/etc/systemd/system/systemd-timesyncd.service
+	# Removing default systemd network conf overriding gwc conf
+	rm -f ${D}/lib/systemd/network/*
 }
 
