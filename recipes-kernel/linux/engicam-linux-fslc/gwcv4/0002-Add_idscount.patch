@@ -10,7 +10,7 @@ diff -ruN a/arch/arm/mach-imx/mach-imx6ul.c b/arch/arm/mach-imx/mach-imx6ul.c
 +
 +
 +struct idscount_plat_data idscount1_pd = {
-+  .pin = 99,   // GPIO3_03 32*3+3
++  .pin = 67,   // GPIO3_03 32*2+3
 +  .mode = IRQ_TYPE_EDGE_BOTH,
 +};
 +
@@ -23,7 +23,7 @@ diff -ruN a/arch/arm/mach-imx/mach-imx6ul.c b/arch/arm/mach-imx/mach-imx6ul.c
 +};
 +
 +struct idscount_plat_data idscount2_pd = {
-+  .pin = 98,   // GPIO3_02 32*3+2
++  .pin = 66,   // GPIO3_02 32*2+2
 +  .mode = IRQ_TYPE_EDGE_BOTH,
 +};
 +
@@ -36,7 +36,7 @@ diff -ruN a/arch/arm/mach-imx/mach-imx6ul.c b/arch/arm/mach-imx/mach-imx6ul.c
 +};
 +
 +struct idscount_plat_data idscount3_pd = {
-+  .pin = 97,   // GPIO3_01 32*3+1
++  .pin = 65,   // GPIO3_01 32*2+1
 +  .mode = IRQ_TYPE_EDGE_BOTH,
 +};
 +
@@ -57,7 +57,7 @@ diff -ruN a/arch/arm/mach-imx/mach-imx6ul.c b/arch/arm/mach-imx/mach-imx6ul.c
  	imx6ul_pm_init();
 +	platform_device_register(&idscount1);
 +	platform_device_register(&idscount2);
-+	platform_device_register(&idscount3);
++	//platform_device_register(&idscount3);
  }
  
  static void __init imx6ul_init_irq(void)
