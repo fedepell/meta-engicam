@@ -65,7 +65,7 @@ diff -ruN a/arch/arm/mach-imx/mach-imx6ul.c b/arch/arm/mach-imx/mach-imx6ul.c
  static void __init imx6ul_init_irq(void)
 diff -ruN a/drivers/misc/idscount.c b/drivers/misc/idscount.c
 --- a/drivers/misc/idscount.c	1970-01-01 01:00:00.000000000 +0100
-+++ b/drivers/misc/idscount.c	2020-11-24 04:29:23.958053805 +0100
++++ b/drivers/misc/idscount.c	2020-11-25 07:51:15.256109752 +0100
 @@ -0,0 +1,376 @@
 +/*
 + *
@@ -349,7 +349,7 @@ diff -ruN a/drivers/misc/idscount.c b/drivers/misc/idscount.c
 +	irq_pin = gpio_to_irq(pd->pin);
 +	irq_set_irq_type(irq_pin, pd->mode);
 +	sprintf(ids->irq_name, "idscount%d", pd->pin);
-+	if (request_irq(irq_pin, idscount_isr, IRQF_SHARED | IRQF_TRIGGER_RISING, ids->irq_name, dev) < 0) {
++	if (request_irq(irq_pin, idscount_isr, IRQF_SHARED, ids->irq_name, dev) < 0) {
 +	  printk("request of irq %d for pin %d failed!\n", irq_pin, pd->pin);
 +	  ret = -EINVAL;
 +	  goto probe_error;
