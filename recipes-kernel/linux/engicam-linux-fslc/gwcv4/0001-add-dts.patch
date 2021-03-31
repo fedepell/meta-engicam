@@ -18,7 +18,7 @@ diff -ruN a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
 diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts
 --- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	1970-01-01 01:00:00.000000000 +0100
 +++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	2020-09-23 14:01:26.743422010 +0200
-@@ -0,0 +1,468 @@
+@@ -0,0 +1,469 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
 + *
@@ -128,6 +128,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts
 +
 +		ethphy0: ethernet-phy@0 {
 +			compatible = "ethernet-phy-ieee802.3-c22";
++     smsc,disable-energy-detect;
 +			reg = <0>;
 +		};
 +	};
@@ -490,7 +491,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts
 diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts
 --- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	1970-01-01 01:00:00.000000000 +0100
 +++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	2020-09-23 14:01:45.999379085 +0200
-@@ -0,0 +1,495 @@
+@@ -0,0 +1,497 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
 + *
@@ -608,11 +609,13 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
 +
 +		ethphy0: ethernet-phy@0 {
 +			compatible = "ethernet-phy-ieee802.3-c22";
++     smsc,disable-energy-detect;
 +			reg = <0>;
 +		};
 +
 +		ethphy1: ethernet-phy@1 {
 +			compatible = "ethernet-phy-ieee802.3-c22";
++     smsc,disable-energy-detect;
 +			reg = <1>;
 +		};
 +	};
