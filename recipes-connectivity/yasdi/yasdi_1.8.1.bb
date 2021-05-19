@@ -3,9 +3,9 @@ LICENSE = "LGPL-2.1"
 HOMEPAGE = "https://www.sma.de/produkte/monitoring-control/yasdi.html"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=7266a93b753b03bc5f00522e65722b79"
 
-SRC_URI = "gitsm://github.com/pknowledge/libyasdi.git;branch=master"
+SRC_URI = "gitsm://github.com/fedepell/libyasdi.git;branch=gwcV4"
 
-SRCREV = "fc531895019b7b2b595f9cda3bdf6cd72c0e211e"
+SRCREV = "33c49b092f0da597bb42057f98f9c3a27526679f"
 
 inherit pkgconfig cmake
 
