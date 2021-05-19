@@ -2,6 +2,7 @@ DESCRIPTION = "YASDI SMA library"
 LICENSE = "LGPL-2.1"
 HOMEPAGE = "https://www.sma.de/produkte/monitoring-control/yasdi.html"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=7266a93b753b03bc5f00522e65722b79"
+PR = "r1"
 
 SRC_URI = "gitsm://github.com/fedepell/libyasdi.git;branch=gwcV4"
 
@@ -28,3 +29,8 @@ do_install_append() {
   install -m 644 ${WORKDIR}/git/os/*.h ${D}/usr/include/yasdi
   install -m 644 ${WORKDIR}/git/protocol/*.h ${D}/usr/include/yasdi
 }
+
+FILES_${PN} += "${libdir}/libyasdi.so ${libdir}/libyasdi_drv_ip.so ${libdir}/libyasdi_drv_serial.so ${libdir}/libyasdimaster.so"
+FILES_${PN}-dev = "${includedir}"
+
+INSANE_SKIP_${PN} += "dev-so"
