@@ -8,7 +8,6 @@ DEPENDS += "lzop-native bc-native linux-firmware wireless-regdb"
 SRC_URI = "git://github.com/Freescale/linux-fslc.git;branch=${SRCBRANCH} \
            file://0001-add-dts.patch \
            file://0002-Add_idscount.patch \
-           file://0003-Qualcomm-BG96-modem.patch \
            file://gen_dts.sh \
            file://defconfig"
 
