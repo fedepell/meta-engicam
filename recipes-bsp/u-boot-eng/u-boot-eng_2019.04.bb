@@ -23,7 +23,7 @@ SRC_URI += "file://0003-Add-target-to-generate-initial-env-201904.patch"
 SRC_URI_append_microgea = " file://0004-Default-config-microgea-starterkit-201904.patch"
 
 SRC_URI_append_gwcv4 = " file://0004-Default-config-microgea-gwcv4-201904.patch file://0005-Gcc_10_compat.patch file://0006-New_partitioning-GWCv4.patch \
-                         file://0007-Add-DTB-calculation-from-pins.patch"
+                         file://0007-Add-DTB-calculation-from-pins.patch file://0008-Disable_PHY_before_boot.patch"
 
 inherit fsl-u-boot-localversion
 

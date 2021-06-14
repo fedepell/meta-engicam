@@ -1,0 +1,15 @@
+diff -ruN a/include/configs/microgea-mx6ull.h b/include/configs/microgea-mx6ull.h
+--- a/include/configs/microgea-mx6ull.h	2020-12-23 04:22:42.559874101 +0100
++++ b/include/configs/microgea-mx6ull.h	2021-06-14 16:12:56.341834103 +0200
+@@ -66,9 +66,9 @@
+ #define CONFIG_DEFAULT_FDT_FILE	"microgea-mx6ull-gwcv4-dts1.dtb"
+ 
+ #ifdef CONFIG_NAND_BOOT
+-	#define BOOTCMD		"bootcmd=run bootcmd_ubi\0"
++	#define BOOTCMD		"bootcmd=mii write 0 0 3900;run bootcmd_ubi\0"
+ #else
+-	#define BOOTCMD		"bootcmd=run bootcmd_mmc\0"
++	#define BOOTCMD		"bootcmd=mii write 0 0 3900;run bootcmd_mmc\0"
+ #endif
+ 
+ #define CONFIG_EXTRA_ENV_SETTINGS \
