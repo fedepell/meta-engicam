@@ -2,6 +2,7 @@ DESCRIPTION = "LIBNODAVE -- Exchange data with Siemens PLCs"
 LICENSE = "GPLv2"
 HOMEPAGE = "http://libnodave.sourceforge.net/"
 LIC_FILES_CHKSUM = "file://doc/index.html;md5=f83c2c7b30f118247e40f5e73a56ee1a"
+PR = "r1"
 
 SRC_URI = "${SOURCEFORGE_MIRROR}/project/libnodave/libnodave/libnodave-${PV}.tar.gz \
            file://0001-Remove_make_env_overrides.patch"
@@ -11,8 +12,8 @@ inherit autotools
 
 S = "${WORKDIR}/libnodave-${PV}"
 
-CFLAGS_append += " -DLINUX -DDAVE_LITTLE_ENDIAN"
-CPPFLAGS_append += " -DLINUX -DDAVE_LITTLE_ENDIAN"
+CFLAGS_append += " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC"
+CPPFLAGS_append += " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC"
 
 do_compile() {
    cd ${S}
