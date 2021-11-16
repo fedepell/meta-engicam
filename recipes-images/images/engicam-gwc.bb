@@ -113,4 +113,4 @@ IMAGE_INSTALL_append_icoremx6 = " \
 	wf111-driver \
 "
 
-TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev"
+TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev libiec61850-staticdev lib60870-staticdev"
