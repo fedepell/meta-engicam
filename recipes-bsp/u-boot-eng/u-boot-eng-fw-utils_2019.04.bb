@@ -4,11 +4,12 @@ LIC_FILES_CHKSUM = "file://Licenses/README;md5=30503fd321432fc713238f582193b78e"
 SECTION = "bootloader"
 DEPENDS = "mtd-utils"
 DEPENDS += "flex-native bison-native"
+PR = "r1"
 
 SRC_URI = "git://github.com/engicam-stable/u-boot-engicam_2019.04;protocol=git;branch=u-boot-engicam_2019.04_4.19.35"
 
 SRCREV = "eb36ac2e1669d8e7dd1b23bc302b12e26077ed0c"
-SRC_URI += "file://gcc10_build_fix.patch file://default_fw_config_gwcv4.patch"
+SRC_URI += "file://gcc10_build_fix.patch file://default_fw_config_gwcv4.patch file://0003-GWC_env_alignment.patch"
 
 inherit fsl-u-boot-localversion
 
