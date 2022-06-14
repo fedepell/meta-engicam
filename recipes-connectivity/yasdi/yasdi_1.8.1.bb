@@ -2,11 +2,11 @@ DESCRIPTION = "YASDI SMA library"
 LICENSE = "LGPL-2.1"
 HOMEPAGE = "https://www.sma.de/produkte/monitoring-control/yasdi.html"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=7266a93b753b03bc5f00522e65722b79"
-PR = "r1"
+PR = "r2"
 
 SRC_URI = "gitsm://github.com/fedepell/libyasdi.git;branch=gwcV4"
 
-SRCREV = "33c49b092f0da597bb42057f98f9c3a27526679f"
+SRCREV = "b932214d82bcf25e48fc7f4cfdb0bccfda25259c"
 
 inherit pkgconfig cmake
 
