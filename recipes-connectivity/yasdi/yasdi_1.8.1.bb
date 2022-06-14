@@ -4,7 +4,7 @@ HOMEPAGE = "https://www.sma.de/produkte/monitoring-control/yasdi.html"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=7266a93b753b03bc5f00522e65722b79"
 PR = "r2"
 
-SRC_URI = "gitsm://github.com/fedepell/libyasdi.git;branch=gwcV4"
+SRC_URI = "gitsm://github.com/fedepell/libyasdi.git;branch=gwcV4;protocol=https"
 
 SRCREV = "b932214d82bcf25e48fc7f4cfdb0bccfda25259c"
 
