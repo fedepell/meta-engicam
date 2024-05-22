@@ -9,6 +9,7 @@ SRC_URI = "git://github.com/Freescale/linux-fslc.git;branch=${SRCBRANCH} \
            file://0001-add-dts.patch \
            file://0002-Add_idscount.patch \
            file://0003-Fix_MX6_gpminand_clock.patch \
+           file://0004-Quectel_serial_modem_support.patch \
            file://gen_dts.sh \
            file://defconfig"
 
