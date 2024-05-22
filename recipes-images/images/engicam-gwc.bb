@@ -105,6 +105,7 @@ IMAGE_INSTALL_append = " \
 	libnodave \
 	gd \
 	fswebcam \
+	kernel-module-rtl8733bu \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
