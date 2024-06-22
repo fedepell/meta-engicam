@@ -8,7 +8,7 @@ S = "${WORKDIR}/git"
 
 DEPENDS += "bc-native"
 
-SRCREV = "dd9f33e9fc44b475bb44941955d7c3acba192dd1"
+SRCREV = "bdcbe1798b9cf93721a17454a39349f19b4d5c83"
 SRC_URI = "git://github.com/fedepell/rtl8733bu.git;branch=master"
 
 do_compile() {
