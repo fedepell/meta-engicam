@@ -1,0 +1,123 @@
+diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts
+--- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	2024-05-22 04:56:33.224000000 +0200
++++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	2024-05-22 14:39:06.740000000 +0200
+@@ -117,7 +117,6 @@
+ 	};
+ };
+ 
+-
+ &can1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_flexcan1>;
+@@ -125,6 +124,13 @@
+ 	status = "okay";
+ };
+ 
++&adc1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_adc1>;
++	num-channels = <3>;
++	status = "okay";
++};
++
+ &gpc {
+ 	fsl,cpu_pupscr_sw2iso = <0x2>;
+ 	fsl,cpu_pupscr_sw = <0x1>;
+@@ -263,12 +269,9 @@
+ 
+ 	pinctrl_gpio_higeco: gpio_higeco_grp {
+ 		fsl,pins = <
+-			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02			0x13099
+ 			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03			0x13099
+-			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04			0x13099
+ 			MX6UL_PAD_GPIO1_IO05__GPIO1_IO05			0x13099
+ 			MX6UL_PAD_GPIO1_IO08__GPIO1_IO08			0x13099
+-			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09			0x13099
+ 			MX6UL_PAD_JTAG_MOD__GPIO1_IO10				0x13099
+ 			MX6UL_PAD_JTAG_TMS__GPIO1_IO11				0x13099
+ 			MX6UL_PAD_JTAG_TDO__GPIO1_IO12				0x13099
+@@ -321,6 +324,15 @@
+ 		>;
+ 	};
+ 
++	pinctrl_adc1: adc1grp {
++		fsl,pins = <
++			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02                        0xb0
++			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04                        0xb0
++			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09                        0xb0
++		>;
++	};
++
++
+ 		pinctrl_enet1: enet1grp {
+ 			fsl,pins = <
+ 				MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN				0x1b0b0
+diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts
+--- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	2024-05-22 04:56:33.224000000 +0200
++++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	2024-05-22 14:37:35.748000000 +0200
+@@ -143,6 +143,14 @@
+ 	status = "okay";
+ };
+ 
++&adc1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_adc1>;
++	num-channels = <3>;
++	status = "okay";
++};
++
++
+ &gpc {
+ 	fsl,cpu_pupscr_sw2iso = <0x2>;
+ 	fsl,cpu_pupscr_sw = <0x1>;
+@@ -281,12 +289,9 @@
+ 
+ 	pinctrl_gpio_higeco: gpio_higeco_grp {
+ 		fsl,pins = <
+-			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02			0x13099
+ 			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03			0x13099
+-			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04			0x13099
+ 			MX6UL_PAD_GPIO1_IO05__GPIO1_IO05			0x13099
+ 			MX6UL_PAD_GPIO1_IO08__GPIO1_IO08			0x13099
+-			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09			0x13099
+ 			MX6UL_PAD_JTAG_MOD__GPIO1_IO10				0x13099
+ 			MX6UL_PAD_JTAG_TMS__GPIO1_IO11				0x13099
+ 			MX6UL_PAD_JTAG_TDO__GPIO1_IO12				0x13099
+@@ -340,6 +345,14 @@
+ 	};
+ 
+ 
++	pinctrl_adc1: adc1grp {
++		fsl,pins = <
++			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02			0xb0    
++			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04			0xb0
++			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09			0xb0
++		>;
++	};
++
+ 		pinctrl_enet1: enet1grp {
+ 			fsl,pins = <
+ 				MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN				0x1b0b0
+diff -ruN a/drivers/iio/adc/vf610_adc.c b/drivers/iio/adc/vf610_adc.c
+--- a/drivers/iio/adc/vf610_adc.c	2024-05-22 04:55:35.932000000 +0200
++++ b/drivers/iio/adc/vf610_adc.c	2024-05-22 14:32:22.072000000 +0200
+@@ -525,16 +525,16 @@
+ }
+ 
+ static const struct iio_chan_spec vf610_adc_iio_channels[] = {
++	VF610_ADC_CHAN(2, IIO_VOLTAGE),
++	VF610_ADC_CHAN(4, IIO_VOLTAGE),
++	VF610_ADC_CHAN(9, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(0, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(1, IIO_VOLTAGE),
+-	VF610_ADC_CHAN(2, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(3, IIO_VOLTAGE),
+-	VF610_ADC_CHAN(4, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(5, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(6, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(7, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(8, IIO_VOLTAGE),
+-	VF610_ADC_CHAN(9, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(10, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(11, IIO_VOLTAGE),
+ 	VF610_ADC_CHAN(12, IIO_VOLTAGE),
