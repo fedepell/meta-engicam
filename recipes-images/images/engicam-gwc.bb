@@ -106,6 +106,10 @@ IMAGE_INSTALL_append = " \
 	gd \
 	fswebcam \
 	kernel-module-rtl8733bu \
+	chrony \
+	chronyc \
+	gpsd \
+	libgps \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
