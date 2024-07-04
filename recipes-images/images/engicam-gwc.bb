@@ -62,7 +62,6 @@ IMAGE_INSTALL_append = " \
 	lighttpd-module-cgi \
 	lighttpd-module-compress \
 	libmicrohttpd \
-	ntpdate \
 	procps \
 	xz \
 	wget \
