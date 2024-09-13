@@ -109,6 +109,7 @@ IMAGE_INSTALL_append = " \
 	chronyc \
 	gpsd \
 	libgps \
+        gnupg \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
