@@ -848,7 +848,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
 +				MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN				0x1b0b0
 +				MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00		0x1b0b0
 +				MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01		0x1b0b0
-+				MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1		0x4001b031
++				MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1		0x4001b011 /* HIGECO - Changed to fix issue with eth noise */
 +
 +				MX6UL_PAD_SNVS_TAMPER9__GPIO5_IO09			0x1b0b0		/* ENET_nRST */
 +			>;
@@ -863,7 +863,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
 +				MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN					0x1b0b0
 +				MX6UL_PAD_ENET2_TX_DATA0__ENET2_TDATA00					0x1b0b0
 +				MX6UL_PAD_ENET2_TX_DATA1__ENET2_TDATA01					0x1b0b0
-+				MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2					0x4001b031
++				MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2					0x4001b011 /* HIGECO - Changed to fix issue with eth noise */
 +
 +				MX6UL_PAD_GPIO1_IO07__ENET2_MDC							0x1b0b0
 +				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO						0x1b0b0
