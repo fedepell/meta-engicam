@@ -5,16 +5,20 @@ require recipes-kernel/linux/linux-imx.inc
 
 DEPENDS += "lzop-native bc-native linux-firmware wireless-regdb"
 
-SRC_URI = "git://github.com/Freescale/linux-fslc.git;branch=${SRCBRANCH} \
+# At the upgrade to 5.4.296 moved to fedepell fork as upstream (Freescale)
+# is not updating anymore 5.4.x since 5.4.224
+SRC_URI = "git://github.com/fedepell/linux-fslc.git;branch=${SRCBRANCH} \
            file://0001-add-dts.patch \
            file://0002-Add_idscount.patch \
-           file://0003-Fix_MX6_gpminand_clock.patch \
-           file://0004-Quectel_serial_modem_support.patch \
            file://0005-ADC_support.patch \
            file://gen_dts.sh \
            file://defconfig"
 
 LOCALVERSION = "-gwcv4"
+
+# Removed patches since upstreamed with last bump from 5.4.122 to 5.4.296:
+#           file://0003-Fix_MX6_gpminand_clock.patch
+#           file://0004-Quectel_serial_modem_support.patch
 
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
