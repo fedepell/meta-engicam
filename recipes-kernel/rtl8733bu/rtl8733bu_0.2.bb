@@ -1,6 +1,6 @@
 SUMMARY = "RTL8733bu driver from Quectel"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://README.md;md5=3bb007783e0d51c86195b4cae631dc99"
+LIC_FILES_CHKSUM = "file://README.md;md5=e8a59bdcb27778fdceb6a9fc55f0f995"
 
 inherit module
 
@@ -8,8 +8,8 @@ S = "${WORKDIR}/git"
 
 DEPENDS += "bc-native"
 
-SRCREV = "bdcbe1798b9cf93721a17454a39349f19b4d5c83"
-SRC_URI = "git://github.com/fedepell/rtl8733bu.git;branch=master file://0001-Disable_dual_mode.patch"
+SRCREV = "308919f005f439de433aac977f925bb57f59acf4"
+SRC_URI = "git://github.com/ROCKNIX/RTL8733BU.git;branch=v5.15.12-126-wb"
 
 do_compile() {
 	make KSRC=${STAGING_KERNEL_DIR} KVER=${KERNEL_VERSION}
