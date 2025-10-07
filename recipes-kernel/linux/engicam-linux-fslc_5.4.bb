@@ -12,9 +12,9 @@ include engicam-linux-fslc.inc
 LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 
 
-LINUX_VERSION = "5.4.297"
+LINUX_VERSION = "5.4.300"
 
 SRCBRANCH = "5.4.x+fslc"
-SRCREV = "eabf6ca412334af21a004e3e9e56a9c999691ea1"
+SRCREV = "2bd46b70cfa13b347aa7506413cc7382fc043544"
 
 COMPATIBLE_MACHINE = "(mxs|mx5|mx6|vf|use-mainline-bsp|microgea|gwcv4)"
