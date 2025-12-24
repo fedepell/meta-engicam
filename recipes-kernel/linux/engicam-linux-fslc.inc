@@ -11,6 +11,7 @@ SRC_URI = "git://github.com/fedepell/linux-fslc.git;branch=${SRCBRANCH} \
            file://0001-add-dts.patch \
            file://0002-Add_idscount.patch \
            file://0005-ADC_support.patch \
+           file://0006-DTB_phy_reset_changes.patch \
            file://gen_dts.sh \
            file://defconfig"
 
