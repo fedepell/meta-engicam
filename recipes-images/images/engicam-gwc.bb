@@ -41,10 +41,6 @@ IMAGE_INSTALL_append = " \
 	luacjson \
 	luasys \
 	luasocket \
-	luasql \
-	luasnmp \
-	lualfs \
-	luaexpat \
 	curl \
 	libmodbus \
 	firmware-imx-vpu-imx6q \
@@ -68,7 +64,6 @@ IMAGE_INSTALL_append = " \
 	tar \
 	sysstat \
 	screen \
-	msmtp \
 	lsof \
 	iptables \
 	gzip \
@@ -109,7 +104,7 @@ IMAGE_INSTALL_append = " \
 	chronyc \
 	gpsd \
 	libgps \
-        gnupg \
+    gnupg \
 "
 
 IMAGE_INSTALL_append_icoremx6 = " \
