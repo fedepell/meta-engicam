@@ -6,7 +6,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts
  	phy-mode = "rmii";
  	phy-handle = <&ethphy0>;
 +	phy-reset-post-delay = <10>;
-+	phy-reset-post-duration = <10>;
++	phy-reset-duration = <100>;
 +	phy-reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
  	status = "okay";
  
@@ -31,7 +31,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
  	phy-mode = "rmii";
  	phy-handle = <&ethphy0>;
 +        phy-reset-post-delay = <10>;
-+        phy-reset-post-duration = <10>;
++        phy-reset-duration = <100>;
 +        phy-reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
  	status = "okay";
  };
@@ -41,7 +41,7 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
  	phy-mode = "rmii";
  	phy-handle = <&ethphy1>;
 +        phy-reset-post-delay = <10>;
-+        phy-reset-post-duration = <10>;
++        phy-reset-duration = <100>;
 +        phy-reset-gpios = <&gpio2 15 GPIO_ACTIVE_LOW>;
  	status = "okay";
  
