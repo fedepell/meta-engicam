@@ -1,59 +1,67 @@
 diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts
 --- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	2025-12-21 09:44:08.088000000 +0100
-+++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	2025-12-24 04:10:25.560000000 +0100
-@@ -99,6 +99,9 @@
- 	pinctrl-0 = <&pinctrl_enet1>;
- 	phy-mode = "rmii";
- 	phy-handle = <&ethphy0>;
-+	phy-reset-post-delay = <10>;
-+	phy-reset-post-duration = <10>;
-+	phy-reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
- 	mdio {
-@@ -109,10 +112,7 @@
++++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts1.dts	2026-02-15 08:06:41.512000000 +0100
+@@ -108,11 +108,14 @@
+ 		ethphy0: ethernet-phy@0 {
  			compatible = "ethernet-phy-ieee802.3-c22";
  			smsc,disable-energy-detect;
++			pinctrl-names = "default";
++			pinctrl-0 = <&pinctrl_enet1rst>;
  			reg = <0>;
--			reset-names = "phy0";
--			reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
+ 			reset-names = "phy0";
+ 			reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
 -			reset-assert-us = <1000>;
 -			reset-deassert-us = <1000>;
++			reset-assert-us = <50000>;
++			reset-deassert-us = <10000>;
 +			status = "okay";
  		};
  	};
  };
+@@ -345,11 +348,16 @@
+ 
+ 				MX6UL_PAD_GPIO1_IO07__ENET1_MDC						0x1b0b0
+ 				MX6UL_PAD_GPIO1_IO06__ENET1_MDIO					0x1b0b0
++			>;
++		};
+ 
+-				MX6UL_PAD_SNVS_TAMPER9__GPIO5_IO09			0x1b0b0		/* ENET_nRST */
++		pinctrl_enet1rst: enet1rstgrp {
++			fsl,pins = <
++				MX6UL_PAD_SNVS_TAMPER9__GPIO5_IO09                      0x1b0b0         /* ENET_nRST */
+ 			>;
+ 		};
+ 
++
+ 		pinctrl_flexcan1: flexcan1grp{
+ 			fsl,pins = <
+ 				MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x1b020
 diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts
 --- a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	2025-12-21 09:44:08.088000000 +0100
-+++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	2025-12-24 04:10:27.900000000 +0100
-@@ -99,6 +99,9 @@
- 	pinctrl-0 = <&pinctrl_enet1>;
- 	phy-mode = "rmii";
- 	phy-handle = <&ethphy0>;
-+        phy-reset-post-delay = <10>;
-+        phy-reset-post-duration = <10>;
-+        phy-reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- };
- 
-@@ -107,6 +110,9 @@
++++ b/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts	2026-02-15 07:29:38.516000000 +0100
+@@ -107,6 +107,9 @@
  	pinctrl-0 = <&pinctrl_enet2>;
  	phy-mode = "rmii";
  	phy-handle = <&ethphy1>;
-+        phy-reset-post-delay = <10>;
-+        phy-reset-post-duration = <10>;
-+        phy-reset-gpios = <&gpio2 15 GPIO_ACTIVE_LOW>;
++	phy-reset-post-delay = <10>;
++	phy-reset-duration = <50>;
++	phy-reset-gpios = <&gpio2 15 GPIO_ACTIVE_LOW>;
  	status = "okay";
  
  	mdio {
-@@ -117,20 +123,14 @@
+@@ -116,21 +119,21 @@
+ 		ethphy0: ethernet-phy@0 {
  			compatible = "ethernet-phy-ieee802.3-c22";
  			smsc,disable-energy-detect;
++			pinctrl-names = "default";
++			pinctrl-0 = <&pinctrl_enet1rst>;
  			reg = <0>;
--			reset-names = "phy0";
--			reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
+ 			reset-names = "phy0";
+ 			reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
 -			reset-assert-us = <1000>;
 -			reset-deassert-us = <1000>;
++			reset-assert-us = <50000>;
++			reset-deassert-us = <10000>;
 +			status = "okay";
  		};
  
@@ -69,3 +77,15 @@ diff -ruN a/arch/arm/boot/dts/microgea-mx6ull-gwcv4-dts2.dts b/arch/arm/boot/dts
  		};
  	};
  };
+@@ -362,7 +365,11 @@
+ 				MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00		0x1b0b0
+ 				MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01		0x1b0b0
+ 				MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1		0x4001b031
++			>;
++		};
+ 
++		pinctrl_enet1rst: enet1rstgrp {
++			fsl,pins = <
+ 				MX6UL_PAD_SNVS_TAMPER9__GPIO5_IO09			0x1b0b0		/* ENET_nRST */
+ 			>;
+ 		};
