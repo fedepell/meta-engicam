@@ -10,10 +10,10 @@ SRC_URI[sha256sum] = "983d09771c07d53f409ec8d63a936906a1d4383cf6d590954fdf754f5c
 
 inherit autotools
 
-S = "${WORKDIR}/libnodave-${PV}"
+S = "${UNPACKDIR}/libnodave-${PV}"
 
-CFLAGS_append += " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC"
-CPPFLAGS_append += " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC"
+CFLAGS:append += " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC"
+CPPFLAGS:append += " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC"
 
 do_compile() {
    cd ${S}
@@ -28,5 +28,5 @@ do_install() {
    oe_runmake install
 }
 
-FILES_${PN}-dev = "/usr/include/nodave.h"
-FILES_${PN} = "${libdir}/libnodave.so"
+FILES:${PN}-dev = "/usr/include/nodave.h"
+FILES:${PN} = "${libdir}/libnodave.so"

@@ -2,7 +2,7 @@
 
 # Some custom systemd default configurations we have to limit resource usage
 
-do_install_append() {
+do_install:append() {
 	echo "Storage=volatile" >> ${D}/${sysconfdir}/systemd/journald.conf
 	echo "RuntimeMaxUse=8M" >> ${D}/${sysconfdir}/systemd/journald.conf
 	ln -s /dev/null ${D}/etc/systemd/system/rpcbind.service

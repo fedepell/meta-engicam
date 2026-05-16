@@ -10,7 +10,7 @@ SRCREV = "1603dde35668a115f84f9f94fadc8ff1054d9708"
 
 inherit pkgconfig cmake
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 
 do_configure() {
@@ -18,7 +18,7 @@ do_configure() {
 }
 
 
-do_install_append() {
+do_install:append() {
   mkdir -p ${D}/usr/include/yasdi
   install -m 644 ${WORKDIR}/git/include/*.h ${D}/usr/include/yasdi
   install -m 644 ${WORKDIR}/git/libs/*.h ${D}/usr/include/yasdi
@@ -30,7 +30,7 @@ do_install_append() {
   install -m 644 ${WORKDIR}/git/protocol/*.h ${D}/usr/include/yasdi
 }
 
-FILES_${PN} += "${libdir}/libyasdi.so ${libdir}/libyasdi_drv_ip.so ${libdir}/libyasdi_drv_serial.so ${libdir}/libyasdimaster.so"
-FILES_${PN}-dev = "${includedir}"
+FILES:${PN} += "${libdir}/libyasdi.so ${libdir}/libyasdi_drv_ip.so ${libdir}/libyasdi_drv_serial.so ${libdir}/libyasdimaster.so"
+FILES:${PN}-dev = "${includedir}"
 
-INSANE_SKIP_${PN} += "dev-so"
+INSANE_SKIP:${PN} += "dev-so"

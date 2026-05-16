@@ -1,5 +1,5 @@
 DESCRIPTION = "Firmware files for epd display"
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 LICENSE = "CLOSED"
 
@@ -11,4 +11,4 @@ do_install() {
 	install -m 0755 ${S}/epdc/* ${D}/lib/firmware/imx/epdc
 }
 
-FILES_${PN} =  "/lib/firmware/imx/*"
+FILES:${PN} =  "/lib/firmware/imx/*"

@@ -1,5 +1,5 @@
 DESCRIPTION = "Firmware files for use with BCM4343w wifi"
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 LICENSE = "CLOSED"
 
@@ -13,4 +13,4 @@ do_install() {
 	ln -s bcmdhd_4343w_etsi-11_15_2016.cal brcmfmac43430-sdio.txt
 }
 
-FILES_${PN} =  "/lib/firmware/brcm/*"
+FILES:${PN} =  "/lib/firmware/brcm/*"

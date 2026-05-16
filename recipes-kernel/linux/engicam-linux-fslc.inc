@@ -30,27 +30,27 @@ S = "${WORKDIR}/git"
 # machine, with different entry points
 #KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
-KERNEL_EXTRA_ARGS_mx6 += "LOADADDR=0x10008000"
+KERNEL_EXTRA_ARGS:mx6 += "LOADADDR=0x10008000"
 
-KERNEL_EXTRA_ARGS_mx6sx += "LOADADDR=0x80008000"
+KERNEL_EXTRA_ARGS:mx6sx += "LOADADDR=0x80008000"
 
-KERNEL_EXTRA_ARGS_mx6ull += "LOADADDR=0x80008000"
+KERNEL_EXTRA_ARGS:mx6ull += "LOADADDR=0x80008000"
 
-KERNEL_EXTRA_ARGS_mx6ul += "LOADADDR=0x80008000"
+KERNEL_EXTRA_ARGS:mx6ul += "LOADADDR=0x80008000"
 
-KERNEL_EXTRA_ARGS_mx6sx += "LOADADDR=0x80008000"
+KERNEL_EXTRA_ARGS:mx6sx += "LOADADDR=0x80008000"
 
 LINUX_VERSION_EXTENSION="-gwcv4"
 
 COMPATIBLE_MACHINE = "(mx6|mx6ul|mx6sx)"
 
-kernel_do_configure_append() {
+kernel_do_configure:append() {
     echo "CONFIG_EXTRA_FIRMWARE_DIR=\"${WORKDIR}/recipe-sysroot/lib/firmware/\"" >> ${B}/.config
 }
 
 # Generate the blob of all DTS for GWCv4 with the supplied shell script tool
 # and then install that file to the deployment directory with images along other images
-kernel_do_install_append() {
+kernel_do_install:append() {
     cd arch/arm/boot/dts
     ${WORKDIR}/gen_dts.sh
     install -m 0644 gwcv4-dtbs.bin ${DEPLOY_DIR_IMAGE}

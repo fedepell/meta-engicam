@@ -8,7 +8,7 @@ DESCRIPTION = "U-Boot based on mainline U-Boot used by FSL Community BSP in \
 order to provide support for some backported features and fixes, or because it \
 was submitted for revision and it takes some time to become part of a stable \
 version, or because it is not applicable for upstreaming."
-LICENSE = "GPL-2.0"
+LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://Licenses/README;md5=30503fd321432fc713238f582193b78e"
 
 PROVIDES += "u-boot"
@@ -17,12 +17,11 @@ SRC_URI = "git://github.com/engicam-stable/u-boot-engicam_2019.04;protocol=git;b
 
 SRCREV = "eb36ac2e1669d8e7dd1b23bc302b12e26077ed0c"
 
-S = "${WORKDIR}/git"
 SRC_URI += "file://0003-Add-target-to-generate-initial-env-201904.patch"
 
-SRC_URI_append_microgea = " file://0004-Default-config-microgea-starterkit-201904.patch"
+SRC_URI:append:microgea = " file://0004-Default-config-microgea-starterkit-201904.patch"
 
-SRC_URI_append_gwcv4 = " file://0004-Default-config-microgea-gwcv4-201904.patch file://0005-Gcc_10_compat.patch file://0006-New_partitioning-GWCv4.patch \
+SRC_URI:append:gwcv4 = " file://0004-Default-config-microgea-gwcv4-201904.patch file://0005-Gcc_10_compat.patch file://0006-New_partitioning-GWCv4.patch \
                          file://0007-Add-DTB-calculation-from-pins.patch file://0008-Disable_PHY_before_boot.patch file://0009-Uboot_password.patch"
 
 inherit fsl-u-boot-localversion
@@ -30,9 +29,9 @@ inherit fsl-u-boot-localversion
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE = "(mx6|mx6ul|microgea|gwcv4)"
 
-do_patch_prepend() {
+do_patch:prepend() {
     os.system("mv ${S}/../Engicam.bmp ${S}/tools/logos/");
 }
 
 
-
+ERROR_QA:remove = "patch-status"

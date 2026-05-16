@@ -1,6 +1,6 @@
 
 
-do_install_append () {
+do_install:append () {
     cat >> ${D}${sysconfdir}/fstab <<EOF
 
 # GWCv4 data partition on /mnt

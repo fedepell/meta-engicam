@@ -1,5 +1,5 @@
 SUMMARY = "U-Boot bootloader fw_printenv/setenv utilities"
-LICENSE = "GPL-2.0"
+LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://Licenses/README;md5=30503fd321432fc713238f582193b78e"
 SECTION = "bootloader"
 DEPENDS = "mtd-utils"
@@ -16,12 +16,10 @@ inherit fsl-u-boot-localversion
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE = "(mx6|mx6ul|microgea|gwcv4)"
 
-S = "${WORKDIR}/git"
+INSANE_SKIP:${PN} = "already-stripped"
 
-INSANE_SKIP_${PN} = "already-stripped"
-
-EXTRA_OEMAKE_class-target = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${CC} ${CFLAGS} ${LDFLAGS}" HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" V=1'
-EXTRA_OEMAKE_class-cross = 'ARCH=${TARGET_ARCH} CC="${CC} ${CFLAGS} ${LDFLAGS}" V=1'
+EXTRA_OEMAKE:class-target = 'CROSS_COMPILE=${TARGET_PREFIX} CC="${CC} ${CFLAGS} ${LDFLAGS}" HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" V=1'
+EXTRA_OEMAKE:class-cross = 'ARCH=${TARGET_ARCH} CC="${CC} ${CFLAGS} ${LDFLAGS}" V=1'
 
 
 inherit uboot-config
@@ -53,3 +51,6 @@ uboot_fw_utils_cross() {
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 BBCLASSEXTEND = "cross"
+
+ERROR_QA:remove = "patch-status"
+
