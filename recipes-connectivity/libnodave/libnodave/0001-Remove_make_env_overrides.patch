@@ -1,3 +1,6 @@
+
+Upstream-Status: Inappropriate [upstream is dead]
+
 diff -ruN a/Makefile b/Makefile
 --- a/Makefile	2013-05-17 22:17:48.000000000 +0200
 +++ b/Makefile	2020-10-10 06:47:53.092994446 +0200

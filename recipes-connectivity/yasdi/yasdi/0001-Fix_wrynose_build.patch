@@ -1,0 +1,34 @@
+
+Upstream-Status: Inappropriate [upstream is dead]
+
+diff --git a/os/os_linux.h b/os/os_linux.h
+index e1505cd..e1a40e2 100755
+--- a/os/os_linux.h
++++ b/os/os_linux.h
+@@ -24,7 +24,8 @@
+ #include <sys/types.h>
+ #include <unistd.h>
+ #include <pthread.h>
+-#include <termio.h>
++#include <termios.h>
++#include <sys/ioctl.h>
+ #include <sys/time.h>
+ #include <stdarg.h>
+ 
+diff --git a/projects/generic-cmake/CMakeLists.txt b/projects/generic-cmake/CMakeLists.txt
+index 3f5a727..2f404d3 100755
+--- a/projects/generic-cmake/CMakeLists.txt
++++ b/projects/generic-cmake/CMakeLists.txt
+@@ -8,9 +8,9 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
+ 
+ #needed for CMAKE version 2.6 to supress warnings 
+ #when linking against wsock32 lib...
+-IF(COMMAND CMAKE_POLICY)
+-   CMAKE_POLICY(SET CMP0003 OLD)
+-ENDIF(COMMAND CMAKE_POLICY)
++#IF(COMMAND CMAKE_POLICY)
++#   CMAKE_POLICY(SET CMP0003 OLD)
++#ENDIF(COMMAND CMAKE_POLICY)
+ 
+ 
+ 

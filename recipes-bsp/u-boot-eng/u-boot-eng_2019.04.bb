@@ -22,7 +22,8 @@ SRC_URI += "file://0003-Add-target-to-generate-initial-env-201904.patch"
 SRC_URI:append:microgea = " file://0004-Default-config-microgea-starterkit-201904.patch"
 
 SRC_URI:append:gwcv4 = " file://0004-Default-config-microgea-gwcv4-201904.patch file://0005-Gcc_10_compat.patch file://0006-New_partitioning-GWCv4.patch \
-                         file://0007-Add-DTB-calculation-from-pins.patch file://0008-Disable_PHY_before_boot.patch file://0009-Uboot_password.patch"
+                         file://0007-Add-DTB-calculation-from-pins.patch file://0008-Disable_PHY_before_boot.patch file://0009-Uboot_password.patch \
+                         file://0010-Build_wrynose.patch"
 
 inherit fsl-u-boot-localversion
 
@@ -35,3 +36,8 @@ do_patch:prepend() {
 
 
 ERROR_QA:remove = "patch-status"
+
+
+do_deploy:append() {
+    ln -sf u-boot.bin u-boot.bin.tagged
+}

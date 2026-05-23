@@ -1,5 +1,5 @@
 DESCRIPTION = "LIBNODAVE -- Exchange data with Siemens PLCs"
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-or-later"
 HOMEPAGE = "http://libnodave.sourceforge.net/"
 LIC_FILES_CHKSUM = "file://doc/index.html;md5=f83c2c7b30f118247e40f5e73a56ee1a"
 PR = "r1"
@@ -12,8 +12,11 @@ inherit autotools
 
 S = "${UNPACKDIR}/libnodave-${PV}"
 
-CFLAGS:append += " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC"
-CPPFLAGS:append += " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC"
+CFLAGS:append = " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC -Wno-implicit-function-declaration"
+CPPFLAGS:append = " -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC -Wno-implicit-function-declaration"
+
+do_configure() {
+}
 
 do_compile() {
    cd ${S}

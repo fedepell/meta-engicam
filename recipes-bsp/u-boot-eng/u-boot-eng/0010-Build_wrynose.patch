@@ -1,0 +1,11 @@
+diff -ruN u-boot-eng-2019.04/common/autoboot.c u-boot-eng-2019.04-b/common/autoboot.c
+--- u-boot-eng-2019.04/common/autoboot.c	2026-05-17 06:24:47.107000152 +0200
++++ u-boot-eng-2019.04-b/common/autoboot.c	2026-05-17 06:29:58.514179027 +0200
+@@ -11,6 +11,7 @@
+ #include <console.h>
+ #include <fdtdec.h>
+ #include <menu.h>
++#include <hash.h>
+ #include <post.h>
+ #include <u-boot/sha256.h>
+ #include <bootcount.h>
