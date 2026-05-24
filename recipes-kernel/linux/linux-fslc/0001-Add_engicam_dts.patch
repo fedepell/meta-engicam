@@ -1,0 +1,17 @@
+
+Upstream-Status: Inappropriate [local hardware configs]
+
+diff -ruN linux/arch/arm/boot/dts/nxp/imx/Makefile linux-b/arch/arm/boot/dts/nxp/imx/Makefile
+--- linux/arch/arm/boot/dts/nxp/imx/Makefile	2026-05-17 11:18:15.654726543 +0200
++++ linux-b/arch/arm/boot/dts/nxp/imx/Makefile	2026-05-17 11:21:28.880112670 +0200
+@@ -361,7 +361,9 @@
+ 	imx6ull-tqma6ull2l-mba6ulx.dtb \
+ 	imx6ull-uti260b.dtb \
+ 	imx6ulz-14x14-evk.dtb \
+-	imx6ulz-bsh-smm-m2.dtb
++	imx6ulz-bsh-smm-m2.dtb \
++	microgea-mx6ull-gwcv4-dts1.dtb \
++	microgea-mx6ull-gwcv4-dts2.dtb
+ dtb-$(CONFIG_SOC_IMX7D) += \
+ 	imx7d-cl-som-imx7.dtb \
+ 	imx7d-colibri-aster.dtb \

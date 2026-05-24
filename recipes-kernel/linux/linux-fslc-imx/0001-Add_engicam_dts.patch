@@ -1,0 +1,18 @@
+
+
+Upstream-Status: Inappropriate [local hardware configs]
+
+diff -ruN linux/arch/arm/boot/dts/nxp/imx/Makefile linux-b/arch/arm/boot/dts/nxp/imx/Makefile
+--- linux/arch/arm/boot/dts/nxp/imx/Makefile	2026-05-16 05:37:22.185089020 +0200
++++ linux-b/arch/arm/boot/dts/nxp/imx/Makefile	2026-05-16 05:50:28.970691664 +0200
+@@ -439,7 +439,9 @@
+ 	imx6ulz-14x14-evk-btwifi.dtb \
+ 	imx6ulz-14x14-evk-emmc.dtb \
+ 	imx6ulz-14x14-evk-gpmi-weim.dtb \
+-	imx6ulz-bsh-smm-m2.dtb
++	imx6ulz-bsh-smm-m2.dtb \
++	microgea-mx6ull-gwcv4-dts1.dtb \
++	microgea-mx6ull-gwcv4-dts2.dtb
+ 
+ imx6ul-14x14-evk-reve-dtbs := imx6ul-14x14-evk.dtb imx6ul-14x14-evk-reve.dtbo
+ imx6ul-14x14-evk-reve-csi-dtbs := imx6ul-14x14-evk-csi.dtb imx6ul-14x14-evk-reve.dtbo
