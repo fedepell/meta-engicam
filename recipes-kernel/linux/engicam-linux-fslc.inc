@@ -7,7 +7,7 @@ DEPENDS += "lzop-native bc-native linux-firmware wireless-regdb"
 
 # At the upgrade to 5.4.296 moved to fedepell fork as upstream (Freescale)
 # is not updating anymore 5.4.x since 5.4.224
-SRC_URI = "git://github.com/fedepell/linux-fslc.git;branch=${SRCBRANCH} \
+SRC_URI = "git://github.com/fedepell/linux-fslc.git;branch=${SRCBRANCH};protocol=https \
            file://0001-add-dts.patch \
            file://0002-Add_idscount.patch \
            file://0005-ADC_support.patch \
@@ -40,7 +40,7 @@ KERNEL_EXTRA_ARGS:mx6ul += "LOADADDR=0x80008000"
 
 KERNEL_EXTRA_ARGS:mx6sx += "LOADADDR=0x80008000"
 
-LINUX_VERSION_EXTENSION="-gwcv4"
+LINUX_VERSION_EXTENSION = "-gwcv4"
 
 COMPATIBLE_MACHINE = "(mx6|mx6ul|mx6sx)"
 

@@ -6,7 +6,7 @@ DEPENDS = "mtd-utils"
 DEPENDS += "flex-native bison-native"
 PR = "r1"
 
-SRC_URI = "git://github.com/engicam-stable/u-boot-engicam_2019.04;protocol=git;branch=u-boot-engicam_2019.04_4.19.35"
+SRC_URI = "git://github.com/engicam-stable/u-boot-engicam_2019.04;protocol=git;branch=u-boot-engicam_2019.04_4.19.35;protocol=https"
 
 SRCREV = "eb36ac2e1669d8e7dd1b23bc302b12e26077ed0c"
 SRC_URI += "file://gcc10_build_fix.patch file://default_fw_config_gwcv4.patch file://0003-GWC_env_alignment.patch"

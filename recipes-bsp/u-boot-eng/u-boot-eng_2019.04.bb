@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = "file://Licenses/README;md5=30503fd321432fc713238f582193b78e"
 
 PROVIDES += "u-boot"
 
-SRC_URI = "git://github.com/engicam-stable/u-boot-engicam_2019.04;protocol=git;branch=u-boot-engicam_2019.04_4.19.35"
+SRC_URI = "git://github.com/engicam-stable/u-boot-engicam_2019.04;protocol=git;branch=u-boot-engicam_2019.04_4.19.35;protocol=https"
 
 SRCREV = "eb36ac2e1669d8e7dd1b23bc302b12e26077ed0c"
 
