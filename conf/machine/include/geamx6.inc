@@ -2,7 +2,7 @@
 
 
 include conf/machine/include/imx-base.inc
-include conf/machine/include/tune-cortexa7.inc
+include conf/machine/include/arm/armv7a/tune-cortexa7.inc
 
 
 IMAGE_FSTYPES = "tar.bz2 ext4 ubifs wic.gz"

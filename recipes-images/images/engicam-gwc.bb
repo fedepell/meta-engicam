@@ -4,10 +4,11 @@ LICENSE = "MIT"
 
 inherit core-image
 
-EXTRA_IMAGE_FEATURES = " debug-tweaks ssh-server-openssh package-management "
+# TODO: REMOVE root/empty passwords once first rough testing is done
+EXTRA_IMAGE_FEATURES = " ssh-server-openssh package-management allow-empty-password allow-root-login empty-root-password "
 
 
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL:append = " \
 	binutils \
 	engicam-mtd-script \
 	engicam-emmc-script \
@@ -16,48 +17,16 @@ IMAGE_INSTALL_append = " \
 	strace \
 	iproute2 \
 	canutils \
-	cantest \
 	mtd-utils \
 	mtd-utils-ubifs \
-	serialtools \
 	devmem2 \
 	i2c-tools \
 	imx-kobs \
-	u-boot-eng-fw-utils \
 	minicom \
 	ethtool \
 	dosfstools \
 	e2fsprogs \
-	usbutils \
-	iw \
-	wpa-supplicant \
-	opkg \
-	opkg-collateral \
-	json-c \
-	ppp \
-	ppp-tools \
-	lua \
-	luaposix \
-	luacjson \
-	luasys \
-	luasocket \
 	curl \
-	libmodbus \
-	firmware-imx-vpu-imx6q \
-	openvpn \
-	lighttpd \
-	lighttpd-module-openssl \
-	lighttpd-module-rewrite \
-	lighttpd-module-redirect \
-	lighttpd-module-alias \
-	lighttpd-module-auth \
-	lighttpd-module-authn-file \
-	lighttpd-module-evasive \
-	lighttpd-module-usertrack \
-	lighttpd-module-setenv \
-	lighttpd-module-cgi \
-	lighttpd-module-compress \
-	libmicrohttpd \
 	procps \
 	xz \
 	wget \
@@ -72,7 +41,19 @@ IMAGE_INSTALL_append = " \
 	bash \
 	dos2unix \
 	nano \
-	traceroute \
+	util-linux \
+	avahi-utils \
+	usb-modeswitch \
+	htop \
+	bind-utils \
+	iputils \
+	coreutils \
+	usbutils \
+	iw \
+	wpa-supplicant \
+	json-c \
+	ppp \
+	ppp-tools \
 	hostapd \
 	iproute2-ss \
 	iproute2-devlink \
@@ -85,32 +66,49 @@ IMAGE_INSTALL_append = " \
 	iproute2-tipc \
 	libxml2-utils \
 	sqlite3 \
-	util-linux \
-	avahi-utils \
-	usb-modeswitch \
-	htop \
-	dhcp-client \
-	bind-utils \
-	netcat \
-	iputils \
-	coreutils \
-	yasdi \
-	opendnp3 \
-	libnodave \
-	gd \
+	libmodbus \
+	libmicrohttpd \
 	fswebcam \
-	kernel-module-rtl8733bu \
+	gd \
 	chrony \
 	chronyc \
 	gpsd \
 	libgps \
-    gnupg \
-"
-
-IMAGE_INSTALL_append_icoremx6 = " \
+	openvpn \
+	traceroute \
+	netcat \
+	dhcpcd \
+	yasdi \
+	libnodave \
 	firmware-imx-vpu-imx6q \
-	imx-test \
-	wf111-driver \
+	gnupg \
+	kernel-module-rtl8733bu \
 "
+# TO BE READDED possibly:
+#	opendnp3 // Dead and problems downloading :?
+#	opkg     // TBD which packager
+#	opkg-collateral
+#	lua      // LUA and lighttpd probably built separately
+#	luaposix
+#	luacjson
+#	luasys
+#	luasocket
+#	lighttpd
+#	lighttpd-module-openssl
+#	lighttpd-module-rewrite
+#	lighttpd-module-redirect
+#	lighttpd-module-alias
+#	lighttpd-module-auth
+#	lighttpd-module-authn-file
+#	lighttpd-module-evasive
+#	lighttpd-module-usertrack
+#	lighttpd-module-setenv
+#	lighttpd-module-cgi
+#	lighttpd-module-compress
+#	serialtools (do we need that??)
+#	cantest (do we need that??)
 
-TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev libiec61850-staticdev lib60870-staticdev"
+# TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev libiec61850-staticdev lib60870-staticdev"
+
+# This is necessary due to removal of some services in meta-engicam/recipes-core/systemd/systemd_%.bbappend
+IMAGE_LOG_CHECK_EXCLUDES += "Failed to preset all unit: Unit .*[rpcbind.service|systemd-timesyncd.service] is masked"

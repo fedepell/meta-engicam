@@ -7,7 +7,7 @@ inherit core-image
 EXTRA_IMAGE_FEATURES = " debug-tweaks ssh-server-openssh tools-debug "
 
 
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL:append = " \
 	binutils \
 	psplash \
 	engicam-mtd-script \
@@ -47,7 +47,7 @@ IMAGE_INSTALL_append = " \
 	opkg \
 "
 
-IMAGE_INSTALL_append_icoremx6 = " \
+IMAGE_INSTALL:append:icoremx6 = " \
 	firmware-imx-vpu-imx6q \
 	gstreamer1.0-plugins-imx \
 	packagegroup-fsl-gstreamer1.0-full \
@@ -55,7 +55,7 @@ IMAGE_INSTALL_append_icoremx6 = " \
 	wf111-driver \
 "
 
-IMAGE_INSTALL_append_isiot = " \
+IMAGE_INSTALL:append:isiot = " \
 	engicam-isiot-startup \
 	lwb-bcm4343w-fw \
 	bluez5 \
@@ -63,7 +63,7 @@ IMAGE_INSTALL_append_isiot = " \
 	obexftp \
 "
 
-IMAGE_INSTALL_append_epd = " \
+IMAGE_INSTALL:append:epd = " \
 	epdc-test \
 	ffmpeg \
 	file \
@@ -72,7 +72,7 @@ IMAGE_INSTALL_append_epd = " \
 	wf111-driver \
 "
 
-IMAGE_INSTALL_append_microdev = " \
+IMAGE_INSTALL:append:microdev = " \
 	engicam-microdev-startup \
         lwb-bcm4343w-fw \
         bluez5 \
