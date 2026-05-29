@@ -5,8 +5,8 @@ LICENSE = "MIT"
 inherit core-image
 
 # TODO: REMOVE root/empty passwords once first rough testing is done
-EXTRA_IMAGE_FEATURES = " ssh-server-openssh package-management allow-empty-password allow-root-login empty-root-password "
-
+EXTRA_IMAGE_FEATURES = " ssh-server-openssh allow-empty-password allow-root-login empty-root-password "
+# Note: packaging was removed since an A-B use makes it useless, can be readded: package-management
 
 IMAGE_INSTALL:append = " \
 	binutils \
