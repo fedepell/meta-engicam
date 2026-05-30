@@ -80,7 +80,6 @@ IMAGE_INSTALL:append = " \
 	dhcpcd \
 	yasdi \
 	libnodave \
-	firmware-imx-vpu-imx6q \
 	gnupg \
 	kernel-module-rtl8733bu \
 "

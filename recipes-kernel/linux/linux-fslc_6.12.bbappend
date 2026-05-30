@@ -3,7 +3,7 @@ COMPATIBLE_MACHINE:gwcv4 = "gwcv4"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
 
-DEPENDS += "lzop-native"
+DEPENDS += "lzop-native firmware-imx wireless-regdb"
 
 unset KBUILD_DEFCONFIG
 
@@ -31,3 +31,6 @@ kernel_do_install:append() {
     install -m 0644 gwcv4-dtbs.bin ${DEPLOY_DIR_IMAGE}
 }
 
+
+# Due to embedding MX firmware
+INSANE_SKIP:kernel-dev += "buildpaths"
