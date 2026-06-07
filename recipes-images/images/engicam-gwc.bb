@@ -6,9 +6,9 @@ inherit core-image
 
 # TODO: REMOVE root/empty passwords once first rough testing is done
 EXTRA_IMAGE_FEATURES = " package-management ssh-server-openssh allow-empty-password allow-root-login empty-root-password "
+EXTRA_IMAGE_FEATURES:remove = "tools-debug"
 
 IMAGE_INSTALL:append = " \
-	binutils \
 	engicam-mtd-script \
 	engicam-emmc-script \
 	engicam-emmc-tools \
@@ -153,6 +153,7 @@ IMAGE_INSTALL:append = " \
 	util-linux-whereis \
 "
 # TO BE READDED possibly:
+#	binutils //
 #	minicom //
 #	screen //
 #	ppp-tools //
