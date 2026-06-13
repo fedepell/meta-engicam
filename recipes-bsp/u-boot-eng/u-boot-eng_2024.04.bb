@@ -22,6 +22,7 @@ SRCREV = "dc8f4c53bae8ba381d2956bdb8419273830ca088"
 # TODO: GWC customizations to be redefined and readded as needed
 # SRC_URI:append:gwcv4 = " file://0004-Default-config-microgea-gwcv4-201904.patch file://0005-Gcc_10_compat.patch file://0006-New_partitioning-GWCv4.patch \
 #                         file://0007-Add-DTB-calculation-from-pins.patch file://0008-Disable_PHY_before_boot.patch file://0009-Uboot_password.patch
+SRC_URI:append:gwcv4 = " file://0001-GWCv5_adaptations.patch"
 
 inherit fsl-u-boot-localversion
 
