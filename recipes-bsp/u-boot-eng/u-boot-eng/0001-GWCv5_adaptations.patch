@@ -32,7 +32,7 @@ diff -ruN u-boot-eng/configs/microgea_mx6ull_sd_defconfig u-boot-eng-b/configs/m
 +
 diff -ruN u-boot-eng/include/configs/microgea-mx6ull.h u-boot-eng-b/include/configs/microgea-mx6ull.h
 --- u-boot-eng/include/configs/microgea-mx6ull.h	2026-06-09 08:27:21.110811258 +0200
-+++ u-boot-eng-b/include/configs/microgea-mx6ull.h	2026-06-13 06:58:54.325553599 +0200
++++ u-boot-eng-b/include/configs/microgea-mx6ull.h	2026-06-14 09:49:22.142880481 +0200
 @@ -26,7 +26,7 @@
  #else
  #define BOOT_FDT "try"
@@ -42,23 +42,27 @@ diff -ruN u-boot-eng/include/configs/microgea-mx6ull.h u-boot-eng-b/include/conf
  #endif
  
  #undef CONFIG_LDO_BYPASS_CHECK
-@@ -48,7 +48,7 @@
+@@ -48,7 +48,8 @@
  #define CONFIG_SYS_I2C_SPEED		100000
  #endif
  
 -#define MFG_NAND_PARTITION " mtdparts=gpmi-nand:64m(nandboot),32m(nandkernel),16m(nanddtb),-(nandrootfs) "
-+#define MFG_NAND_PARTITION "mtdparts=gpmi-nand:4m(boot),120m(rootfs.0),120m(rootfs.1),-(data)"
++/* TODO: Should uboot env be separate not inside boot? */
++#define MFG_NAND_PARTITION "mtdparts=gpmi-nand:4m(boot),240m(rootfs),-(data)"
  
  #define CONFIG_CMD_READ
  #define CONFIG_SERIAL_TAG
-@@ -56,36 +56,39 @@
+@@ -56,36 +57,66 @@
  
  #if defined(CONFIG_NAND_BOOT)
  #define CFG_EXTRA_ENV_SETTINGS \
+-	"splashimage=0x8c000000\0" \
 +        MFG_NAND_PARTITION "\0" \
 +	"mtdids=nand0=gpmi-nand\0" \
 +	"image=/boot/" KERNEL_IMAGE_NAME "\0" \
- 	"splashimage=0x8c000000\0" \
++	"BOOT_ORDER=rootfs.0 rootfs.1\0" \
++	"BOOT_rootfs.0_LEFT=3\0" \
++	"BOOT_rootfs.1_LEFT=3\0" \
  	"fdt_addr=0x83000000\0" \
  	"fdt_high=0xffffffff\0"	  \
 +	"fdt_file=/boot/microgea-mx6ull-gwcv4-dts1.dtb\0" \
@@ -68,7 +72,7 @@ diff -ruN u-boot-eng/include/configs/microgea-mx6ull.h u-boot-eng-b/include/conf
 -	"bootargs=console=ttymxc0,115200 ubi.mtd=nandrootfs "  \
 -		"root=ubi0:rootfs rootfstype=ubifs "		     \
 +	"rootpart=rootfs.0\0" \
-+	"setargs=setenv bootargs console=ttymxc0,115200 ubi.mtd=${rootpart} ubi.mtd=data root=ubi0:${rootpart} rootfstype=ubifs " \
++	"setargs=setenv bootargs console=ttymxc0,115200 ubi.mtd=rootfs ubi.mtd=data root=ubi0:${rootpart} rootfstype=ubifs rauc.slot=${rootpart} " \
  		BOOTARGS_CMA_SIZE \
 -		MFG_NAND_PARTITION \
 +		" " MFG_NAND_PARTITION \
@@ -83,11 +87,36 @@ diff -ruN u-boot-eng/include/configs/microgea-mx6ull.h u-boot-eng-b/include/conf
 -		"else " \
 -			"bootz ${loadaddr} - ${fdt_addr};" \
 -		"fi;fi\0"
-+	"loadfdt=ubi part ${rootpart};ubifsmount ubi0:${rootpart};ubifsload ${fdt_addr} ${fdt_file}\0" \
++	"loadfdt=ubi part rootfs;ubifsmount ubi0:${rootpart};ubifsload ${fdt_addr} ${fdt_file}\0" \
 +	"loadimage=ubifsload ${loadaddr} ${image}\0" \
-+	"bootcmd=run loadfdt;"\
-+		"run loadimage;"\
-+		"run setargs;"\
++	"rauctest=setenv rootpart; " \
++                 "for BOOT_SLOT in \"${BOOT_ORDER}\"; do " \
++                 "if test \"x${rootpart}\" != \"x\"; then echo \"Skipping other\"; " \
++                 "elif test \"x${BOOT_SLOT}\" = \"xrootfs.0\"; then " \
++                 "if test 0x${BOOT_rootfs.0_LEFT} -gt 0; then " \
++                 "echo \"Valid rootfs.0, count ${BOOT_rootfs.0_LEFT}\"; "\
++                 "setexpr BOOT_rootfs.0_LEFT ${BOOT_rootfs.0_LEFT} - 1; " \
++                 "setenv rootpart rootfs.0; "\
++                 "fi; " \
++                 "elif test \"x${BOOT_SLOT}\" = \"xrootfs.1\"; then " \
++                 "if test 0x${BOOT_rootfs.1_LEFT} -gt 0; then " \
++                 "echo \"Valid rootfs.1, count ${BOOT_rootfs.1_LEFT}\"; "\
++                 "setexpr BOOT_rootfs.1_LEFT ${BOOT_rootfs.1_LEFT} - 1; " \
++                 "setenv rootpart rootfs.1; "\
++                 "fi; " \
++                 "fi; " \
++                 "done; "\
++                 "if test -n \"${rootpart}\"; then " \
++                 "saveenv;" \
++                 "else " \
++                 "echo \"No valid slot found, resetting tries to 3\"; " \
++                 "setenv BOOT_rootfs.0_LEFT 3; " \
++                 "setenv BOOT_rootfs.1_LEFT 3; " \
++                 "saveenv; reset; " \
++                 "fi; " \
++ 		 "\0" \
++	"bootcmd=run rauctest;" \
++                "run loadfdt;run loadimage;run setargs;"\
 +		"bootm ${loadaddr} - ${fdt_addr};"\
 +		"\0"
  
@@ -105,7 +134,7 @@ diff -ruN u-boot-eng/include/configs/microgea-mx6ull.h u-boot-eng-b/include/conf
  	"fdt_addr=0x83000000\0" \
  	"tee_addr=0x84000000\0" \
  	"tee_file=undefined\0" \
-@@ -99,7 +102,7 @@
+@@ -99,7 +130,7 @@
  	"mmcautodetect=yes\0" \
  	"mmcargs=setenv bootargs console=${console},${baudrate} " \
  		BOOTARGS_CMA_SIZE \

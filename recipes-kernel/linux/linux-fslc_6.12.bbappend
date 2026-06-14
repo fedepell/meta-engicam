@@ -21,15 +21,19 @@ kernel_do_configure:append() {
     echo "CONFIG_EXTRA_FIRMWARE_DIR=\"${WORKDIR}/recipe-sysroot/usr/lib/firmware/\"" >> ${B}/.config
 }
 
+# TODO: blob of configs is probably not needed anymore as they are delivered in /boot
 # Generate the blob of all DTS for GWCv4 with the supplied shell script tool
 # and then install that file to the deployment directory with images along other images
-kernel_do_install:append() {
-    cd arch/arm/boot/dts/nxp/imx
-    chmod a+x ${UNPACKDIR}/gen_dts.sh
-    ${UNPACKDIR}/gen_dts.sh
-    mkdir -p ${DEPLOY_DIR_IMAGE}
-    install -m 0644 gwcv4-dtbs.bin ${DEPLOY_DIR_IMAGE}
-}
+#
+# This also conflicts (as files are moved) with installing automatically in /boot with
+# adding kernel-devicetree to IMAGE
+#kernel_do_install:append() {
+#    cd arch/arm/boot/dts/nxp/imx
+#    chmod a+x ${UNPACKDIR}/gen_dts.sh
+#    ${UNPACKDIR}/gen_dts.sh
+#    mkdir -p ${DEPLOY_DIR_IMAGE}
+#    install -m 0644 gwcv4-dtbs.bin ${DEPLOY_DIR_IMAGE}
+#}
 
 
 # Due to embedding MX firmware

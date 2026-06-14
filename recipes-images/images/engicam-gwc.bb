@@ -151,6 +151,7 @@ IMAGE_INSTALL:append = " \
 	util-linux-waitpid \
 	util-linux-wdctl \
 	util-linux-whereis \
+	kernel-devicetree \
 "
 # TO BE READDED possibly:
 #	binutils //
