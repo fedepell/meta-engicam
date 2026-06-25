@@ -5,7 +5,7 @@ LICENSE = "MIT"
 inherit core-image
 
 # TODO: REMOVE root/empty passwords once first rough testing is done
-EXTRA_IMAGE_FEATURES = " package-management ssh-server-openssh allow-empty-password allow-root-login empty-root-password "
+EXTRA_IMAGE_FEATURES = " ssh-server-openssh allow-empty-password allow-root-login empty-root-password "
 EXTRA_IMAGE_FEATURES:remove = "tools-debug"
 
 IMAGE_INSTALL:append = " \
@@ -166,8 +166,6 @@ IMAGE_INSTALL:append = " \
 #	libnodave // Probably in core
 #	sqlite3 // Probably in core?
 #	opendnp3 // Dead and problems downloading :?
-#	opkg     // TBD which packager
-#	opkg-collateral
 #	lua      // LUA and lighttpd probably built separately
 #	luaposix
 #	luacjson
