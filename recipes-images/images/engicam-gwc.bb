@@ -37,7 +37,6 @@ IMAGE_INSTALL:append = " \
 	dos2unix \
 	nano \
 	avahi-utils \
-	usb-modeswitch \
 	htop \
 	bind-utils \
 	iputils \
@@ -57,7 +56,6 @@ IMAGE_INSTALL:append = " \
 	iproute2-rtacct \
 	iproute2-tc \
 	iproute2-tipc \
-	libxml2-utils \
 	libmodbus \
 	libmicrohttpd \
 	fswebcam \
@@ -154,6 +152,7 @@ IMAGE_INSTALL:append = " \
 	kernel-devicetree \
 "
 # TO BE READDED possibly:
+#	usb-modeswitch //
 #	binutils //
 #	minicom //
 #	screen //
@@ -185,10 +184,8 @@ IMAGE_INSTALL:append = " \
 #	lighttpd-module-compress
 #	serialtools (do we need that??)
 #	cantest (do we need that??)
+#	libxml2-utils
 
 # TOOLCHAIN_TARGET_TASK += " wpa-supplicant-staticdev libiec61850-staticdev lib60870-staticdev"
-
-# This is necessary due to removal of some services in meta-engicam/recipes-core/systemd/systemd_%.bbappend
-IMAGE_LOG_CHECK_EXCLUDES += "Failed to preset all unit: Unit .*[rpcbind.service|systemd-timesyncd.service] is masked"
 
 
