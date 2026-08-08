@@ -1,0 +1,146 @@
+Upstream-Status: Inappropriate [internal]
+diff -ruN u-boot-imx-2025.04/arch/arm/dts/microgea-mx6ull.dts u-boot-imx-2025.04-b/arch/arm/dts/microgea-mx6ull.dts
+--- u-boot-imx-2025.04/arch/arm/dts/microgea-mx6ull.dts	2026-08-08 04:37:35.428248302 +0200
++++ u-boot-imx-2025.04-b/arch/arm/dts/microgea-mx6ull.dts	2026-08-08 04:38:25.623243210 +0200
+@@ -129,7 +129,6 @@
+ 	pinctrl-0 = <&pinctrl_gpmi_nand_1>;
+ 	status = "okay";
+ 	nand-on-flash-bbt;
+-	fsl,use-minimum-ecc;
+ };
+ 
+ &iomuxc {
+diff -ruN u-boot-imx-2025.04/configs/microgea_mx6ull_nand_defconfig u-boot-imx-2025.04-b/configs/microgea_mx6ull_nand_defconfig
+--- u-boot-imx-2025.04/configs/microgea_mx6ull_nand_defconfig	2026-08-08 04:37:35.867346010 +0200
++++ u-boot-imx-2025.04-b/configs/microgea_mx6ull_nand_defconfig	2026-08-08 05:13:45.072424191 +0200
+@@ -63,3 +63,7 @@
+ CONFIG_MXC_UART=y
+ CONFIG_IMX_THERMAL=y
+ CONFIG_USB=y
++CONFIG_CMD_UBI=y
++CONFIG_CMD_UBIFS=y
++CONFIG_MTDPARTS=y
++CONFIG_LZMA=y
+diff -ruN u-boot-imx-2025.04/configs/microgea_mx6ull_sd_defconfig u-boot-imx-2025.04-b/configs/microgea_mx6ull_sd_defconfig
+--- u-boot-imx-2025.04/configs/microgea_mx6ull_sd_defconfig	2026-08-08 04:37:35.868367167 +0200
++++ u-boot-imx-2025.04-b/configs/microgea_mx6ull_sd_defconfig	2026-08-08 05:13:54.935081642 +0200
+@@ -63,3 +63,7 @@
+ CONFIG_MXC_UART=y
+ CONFIG_IMX_THERMAL=y
+ CONFIG_USB=y
++CONFIG_CMD_UBI=y
++CONFIG_CMD_UBIFS=y
++CONFIG_MTDPARTS=y
++CONFIG_LZMA=y
+diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.04-b/include/configs/microgea-mx6ull.h
+--- u-boot-imx-2025.04/include/configs/microgea-mx6ull.h	2026-08-08 04:37:37.194850707 +0200
++++ u-boot-imx-2025.04-b/include/configs/microgea-mx6ull.h	2026-08-08 04:47:17.699703823 +0200
+@@ -25,7 +25,7 @@
+ #else
+ #define BOOT_FDT "try"
+ #define BOOT_FITIMAGE "no"
+-#define KERNEL_IMAGE_NAME "zImage"
++#define KERNEL_IMAGE_NAME "uImage"
+ #endif
+ 
+ #undef CONFIG_LDO_BYPASS_CHECK
+@@ -47,7 +47,8 @@
+ #define CONFIG_SYS_I2C_SPEED		100000
+ #endif
+ 
+-#define MFG_NAND_PARTITION " mtdparts=gpmi-nand:64m(nandboot),32m(nandkernel),16m(nanddtb),-(nandrootfs) "
++/* TODO: Should uboot env be separate not inside boot? */
++#define MFG_NAND_PARTITION "mtdparts=gpmi-nand:4m(boot),240m(rootfs),-(data)"
+ 
+ #define CONFIG_CMD_READ
+ #define CONFIG_SERIAL_TAG
+@@ -55,36 +56,65 @@
+ 
+ #if defined(CONFIG_NAND_BOOT)
+ #define CFG_EXTRA_ENV_SETTINGS \
+-	"splashimage=0x8c000000\0" \
++	MFG_NAND_PARTITION "\0" \
++	"mtdids=nand0=gpmi-nand\0" \
++	"image=/boot/" KERNEL_IMAGE_NAME "\0" \
++	"BOOT_ORDER=rootfs.0 rootfs.1\0" \
++	"BOOT_rootfs.0_LEFT=3\0" \
++	"BOOT_rootfs.1_LEFT=3\0" \
++	"fdt_file=/boot/microgea-mx6ull-gwcv4-dts1.dtb\0" \
+ 	"fdt_addr=0x83000000\0" \
+ 	"fdt_high=0xffffffff\0"	  \
+ 	"tee_addr=0x84000000\0" \
+ 	"boot_fit=" BOOT_FITIMAGE "\0" \
+ 	"console=ttymxc0\0" \
+-	"bootargs=console=ttymxc0,115200 ubi.mtd=nandrootfs "  \
+-		"root=ubi0:rootfs rootfstype=ubifs "		     \
++	"rootpart=rootfs.0\0" \
++	"setargs=setenv bootargs console=ttymxc0,115200 ubi.mtd=rootfs ubi.mtd=data root=ubi0:${rootpart} rootfstype=ubifs rauc.slot=${rootpart} " \
+ 		BOOTARGS_CMA_SIZE \
+-		MFG_NAND_PARTITION \
++		" " MFG_NAND_PARTITION \
+ 		"\0" \
+-	"bootcmd=nand read ${loadaddr} 0x4000000 0x2000000;"\
+-		"nand read ${fdt_addr} 0x6000000 0x100000;"\
+-		"if test ${tee} = yes; then " \
+-			"nand read ${tee_addr} 0x6000000 0x400000;"\
+-			"bootm ${tee_addr} - ${fdt_addr};" \
+-		"else if test ${boot_fit} = yes; then " \
+-			"bootm;" \
++	"loadfdt=ubi part rootfs;ubifsmount ubi0:${rootpart};ubifsload ${fdt_addr} ${fdt_file}\0" \
++	"loadimage=ubifsload ${loadaddr} ${image}\0" \
++	"rauctest=setenv rootpart; " \
++		"for BOOT_SLOT in \"${BOOT_ORDER}\"; do " \
++		"if test \"x${rootpart}\" != \"x\"; then echo \"Skipping other\"; " \
++		"elif test \"x${BOOT_SLOT}\" = \"xrootfs.0\"; then " \
++		"if test 0x${BOOT_rootfs.0_LEFT} -gt 0; then " \
++		"echo \"Valid rootfs.0, count ${BOOT_rootfs.0_LEFT}\"; "\
++		"setexpr BOOT_rootfs.0_LEFT ${BOOT_rootfs.0_LEFT} - 1; " \
++		"setenv rootpart rootfs.0; "\
++		"fi; " \
++		"elif test \"x${BOOT_SLOT}\" = \"xrootfs.1\"; then " \
++		"if test 0x${BOOT_rootfs.1_LEFT} -gt 0; then " \
++		"echo \"Valid rootfs.1, count ${BOOT_rootfs.1_LEFT}\"; "\
++		"setexpr BOOT_rootfs.1_LEFT ${BOOT_rootfs.1_LEFT} - 1; " \
++		"setenv rootpart rootfs.1; "\
++		"fi; " \
++		"fi; " \
++		"done; "\
++		"if test -n \"${rootpart}\"; then " \
++		"saveenv;" \
+ 		"else " \
+-			"bootz ${loadaddr} - ${fdt_addr};" \
+-		"fi;fi\0"
+-
++		"echo \"No valid slot found, resetting tries to 3\"; " \
++		"setenv BOOT_rootfs.0_LEFT 3; " \
++		"setenv BOOT_rootfs.1_LEFT 3; " \
++		"saveenv; reset; " \
++		"fi; " \
++		"\0" \
++	"bootcmd=run rauctest;" \
++		"run loadfdt;run loadimage;run setargs;"\
++		"bootm ${loadaddr} - ${fdt_addr};"\
++		"\0"
+ #else
+ #define CFG_EXTRA_ENV_SETTINGS \
++	MFG_NAND_PARTITION "\0" \
++	"mtdids=nand0=gpmi-nand\0" \
+ 	"script=boot.scr\0" \
+ 	"image="KERNEL_IMAGE_NAME"\0" \
+ 	"console=ttymxc0\0" \
+ 	"fdt_high=0xffffffff\0" \
+ 	"initrd_high=0xffffffff\0" \
+-	"fdt_file=imx6ull-microgea-microdev-rev3.dtb\0" \
++	"fdt_file=microgea-mx6ull-gwcv4-dts1.dtb\0" \
+ 	"fdt_addr=0x83000000\0" \
+ 	"tee_addr=0x84000000\0" \
+ 	"tee_file=undefined\0" \
+@@ -98,7 +128,7 @@
+ 	"mmcautodetect=yes\0" \
+ 	"mmcargs=setenv bootargs console=${console},${baudrate} " \
+ 		BOOTARGS_CMA_SIZE \
+-		MFG_NAND_PARTITION \
++		" " MFG_NAND_PARTITION \
+ 		" root=${mmcroot}\0" \
+ 	"loadbootscript=" \
+ 		"fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${script};\0" \
