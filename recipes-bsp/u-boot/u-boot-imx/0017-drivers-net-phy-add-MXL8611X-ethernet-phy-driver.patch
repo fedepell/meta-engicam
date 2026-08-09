@@ -1,4 +1,4 @@
-From 72653b2a52aa911d9cadc8102b8d4ef29dc8116f Mon Sep 17 00:00:00 2001
+From 64f6ded446e5186172ad8736af4aa44606e61c05 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:56:24 +0200
 Subject: [PATCH] drivers: net: phy: add MXL8611X ethernet phy driver

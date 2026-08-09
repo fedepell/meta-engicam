@@ -1,4 +1,4 @@
-From 6aac9cddbe56bbc8ed55910328aa9fbfc5f486de Mon Sep 17 00:00:00 2001
+From 67beb8ca2949e3034e2187aea223df6b104f029b Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:45:54 +0200
 Subject: [PATCH] microgea-mx6ull: port MicroGEA MX6ULL boards

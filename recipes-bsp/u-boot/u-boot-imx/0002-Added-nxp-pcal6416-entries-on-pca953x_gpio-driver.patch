@@ -1,4 +1,4 @@
-From 2c5bbbfb8678359c4c543b6469b7db7f847ed831 Mon Sep 17 00:00:00 2001
+From bd97f5cb40cdc9f1999eecd00bc4f0b6c55e026e Mon Sep 17 00:00:00 2001
 From: Matteo Lisi <matteo.lisi@engicam.com>
 Date: Wed, 14 Jan 2026 10:05:08 +0100
 Subject: [PATCH] Added nxp,pcal6416 entries on pca953x_gpio driver

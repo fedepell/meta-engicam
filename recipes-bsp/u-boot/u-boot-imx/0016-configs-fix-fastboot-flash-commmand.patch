@@ -1,4 +1,4 @@
-From a00f08774215ba2294201aba43db77f1650a3df9 Mon Sep 17 00:00:00 2001
+From b79709caec606b286643883ef5b6d7c35ec88707 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:55:23 +0200
 Subject: [PATCH] configs: fix fastboot flash commmand

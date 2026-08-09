@@ -1,4 +1,4 @@
-From d9db262113174c7cd18ae4b57b88af3c5df5c44e Mon Sep 17 00:00:00 2001
+From d4eecafb1580a6c9a295a52c829140b1a8ee7ba9 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:49:00 +0200
 Subject: [PATCH] drivers: clk: imx: clk-imx8mp.c: add CLKOUT1 support

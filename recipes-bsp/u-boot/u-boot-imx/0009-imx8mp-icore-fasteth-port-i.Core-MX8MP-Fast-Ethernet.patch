@@ -1,4 +1,4 @@
-From 42039b9e35aa3f99671188d95dc8de4f61e4c554 Mon Sep 17 00:00:00 2001
+From b860c8037130e222f65c22f0814b6c87558068be Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:47:20 +0200
 Subject: [PATCH] imx8mp-icore-fasteth: port i.Core MX8MP Fast Ethernet boards

@@ -1,10 +1,9 @@
-From 793aa8ca6892849f34151b74cb33cef0dc163552 Mon Sep 17 00:00:00 2001
+From 15aedaa9fe397272b0b14f0eac5b01b848c47a1f Mon Sep 17 00:00:00 2001
 From: Matteo Lisi <matteo.lisi@engicam.com>
 Date: Tue, 10 Feb 2026 18:12:23 +0100
 Subject: [PATCH] added missing defines
 
 Upstream-Status: Pending
-
 ---
  include/configs/imx95_smarcore.h | 3 +++
  1 file changed, 3 insertions(+)

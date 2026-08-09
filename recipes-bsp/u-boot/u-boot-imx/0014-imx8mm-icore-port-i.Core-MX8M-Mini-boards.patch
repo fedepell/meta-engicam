@@ -1,4 +1,4 @@
-From 6325221d2decf571e071928eb817b6e459173b64 Mon Sep 17 00:00:00 2001
+From 753b3e37df51be08c4300c32b13d8ca422e7f29a Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:54:25 +0200
 Subject: [PATCH] imx8mm-icore: port i.Core MX8M Mini boards

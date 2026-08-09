@@ -1,4 +1,5 @@
 Upstream-Status: Inappropriate [internal]
+
 diff -ruN u-boot-imx-2025.04/arch/arm/dts/microgea-mx6ull.dts u-boot-imx-2025.04-b/arch/arm/dts/microgea-mx6ull.dts
 --- u-boot-imx-2025.04/arch/arm/dts/microgea-mx6ull.dts	2026-08-08 04:37:35.428248302 +0200
 +++ u-boot-imx-2025.04-b/arch/arm/dts/microgea-mx6ull.dts	2026-08-08 04:38:25.623243210 +0200
@@ -34,7 +35,7 @@ diff -ruN u-boot-imx-2025.04/configs/microgea_mx6ull_sd_defconfig u-boot-imx-202
 +CONFIG_LZMA=y
 diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.04-b/include/configs/microgea-mx6ull.h
 --- u-boot-imx-2025.04/include/configs/microgea-mx6ull.h	2026-08-08 04:37:37.194850707 +0200
-+++ u-boot-imx-2025.04-b/include/configs/microgea-mx6ull.h	2026-08-08 04:47:17.699703823 +0200
++++ u-boot-imx-2025.04-b/include/configs/microgea-mx6ull.h	2026-08-09 06:33:56.032317054 +0200
 @@ -25,7 +25,7 @@
  #else
  #define BOOT_FDT "try"
@@ -144,3 +145,45 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
  		" root=${mmcroot}\0" \
  	"loadbootscript=" \
  		"fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${script};\0" \
+@@ -110,10 +140,10 @@
+ 		"run mmcargs; " \
+ 		"if test ${boot_fdt} = yes || test ${boot_fdt} = try; then " \
+ 			"if run loadfdt; then " \
+-				"bootz ${loadaddr} - ${fdt_addr}; " \
++				"bootm ${loadaddr} - ${fdt_addr}; " \
+ 			"else " \
+ 				"if test ${boot_fdt} = try; then " \
+-					"bootz; " \
++					"bootm; " \
+ 				"else " \
+ 					"echo WARN: Cannot load the DT; " \
+ 				"fi; " \
+@@ -121,7 +151,7 @@
+ 		"else if test ${boot_fit} = yes; then " \
+ 			"bootm; " \
+ 		"else " \
+-			"bootz; " \
++			"bootm; " \
+ 		"fi;fi;\0" \
+ 	"netargs=setenv bootargs console=${console},${baudrate} " \
+ 		BOOTARGS_CMA_SIZE \
+@@ -143,16 +173,16 @@
+ 		"else " \
+ 			"if test ${boot_fdt} = yes || test ${boot_fdt} = try; then " \
+ 				"if ${get_cmd} ${fdt_addr} ${fdt_file}; then " \
+-					"bootz ${loadaddr} - ${fdt_addr}; " \
++					"bootm ${loadaddr} - ${fdt_addr}; " \
+ 				"else " \
+ 					"if test ${boot_fdt} = try; then " \
+-						"bootz; " \
++						"bootm; " \
+ 					"else " \
+ 						"echo WARN: Cannot load the DT; " \
+ 					"fi; " \
+ 				"fi; " \
+ 			"else " \
+-				"bootz; " \
++				"bootm; " \
+ 			"fi; " \
+ 		"fi;\0" \
+ 		\

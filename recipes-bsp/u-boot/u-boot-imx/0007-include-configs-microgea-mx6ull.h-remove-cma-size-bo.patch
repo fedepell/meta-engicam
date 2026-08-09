@@ -1,4 +1,4 @@
-From e6aeca1381b9d70c2b8444e1f2fda1a64701d0d8 Mon Sep 17 00:00:00 2001
+From 9207d4e35ca7b7459629405f670e38a211f6b5dc Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:46:23 +0200
 Subject: [PATCH] include: configs: microgea-mx6ull.h: remove cma size boot

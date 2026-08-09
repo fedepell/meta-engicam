@@ -1,4 +1,4 @@
-From 8902173aa96285767e54b4703680c325d47f14c0 Mon Sep 17 00:00:00 2001
+From 60d69b95656b9a1e9d68b6dcfcbf1394be0d2ee5 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:54:00 +0200
 Subject: [PATCH] imx8mp-smarcore: port SmarCore MX8M Plus board

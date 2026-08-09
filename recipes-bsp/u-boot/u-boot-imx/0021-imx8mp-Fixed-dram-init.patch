@@ -1,4 +1,4 @@
-From a5b30b3ed1ba2be97a26d81f133fd0b60d352628 Mon Sep 17 00:00:00 2001
+From ef4ae538bfde73a963fee4df105475657e166ec8 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 6 Aug 2026 16:44:03 +0200
 Subject: [PATCH] imx8mp: Fixed dram init

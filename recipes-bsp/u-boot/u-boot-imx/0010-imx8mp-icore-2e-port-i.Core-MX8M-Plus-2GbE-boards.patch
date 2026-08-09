@@ -1,4 +1,4 @@
-From 2136af2ab373afe135569302cfdbec29fa30b3ab Mon Sep 17 00:00:00 2001
+From 2f00b99607840399b5eb58b005ea764afe215d17 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:47:59 +0200
 Subject: [PATCH] imx8mp-icore-2e: port i.Core MX8M Plus 2GbE boards

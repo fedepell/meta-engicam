@@ -1,4 +1,4 @@
-From 7e3039965496a3e791ca8d861224cb72f9d3fed6 Mon Sep 17 00:00:00 2001
+From 491520c872ed2e39fe510e7db5d474397f38761f Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:54:57 +0200
 Subject: [PATCH] imx8ulp-microgea: port MicroGEA MX8ULP boards
@@ -34,7 +34,7 @@ Upstream-Status: Inappropriate [for engicam use only]
  create mode 100644 include/configs/imx8ulp_microgea.h
 
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index 041255a9d16..9a624836019 100644
+index 32ee19ae96a..40224df8292 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
 @@ -929,7 +929,8 @@ dtb-$(CONFIG_ARCH_IMX8ULP) += \

@@ -26,3 +26,6 @@ SRC_URI += "file://0001-added-mxl-8611x-PHY-driver.patch \
             
 
 COMPATIBLE_MACHINE:gwcv4 = "gwcv4"
+
+# Fix revision so we are now chasing with patches except if we want to
+SRCREV = "99518e6b6f20cb6a2bf19115e355db9f58100af8"

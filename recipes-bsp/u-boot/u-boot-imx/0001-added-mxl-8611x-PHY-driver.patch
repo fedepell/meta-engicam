@@ -1,4 +1,4 @@
-From 3e2aef1b2745b0a4bbe4caa6c9ee7bce291c7836 Mon Sep 17 00:00:00 2001
+From 5594bc191fb6e6c371fabb6aad5f01ad64c5a9f7 Mon Sep 17 00:00:00 2001
 From: Matteo Lisi <matteo.lisi@engicam.com>
 Date: Wed, 14 Jan 2026 10:04:23 +0100
 Subject: [PATCH] added mxl-8611x PHY driver

@@ -1,4 +1,4 @@
-From 6210cdea7a3445c4be141b0d8be5044299c4a894 Mon Sep 17 00:00:00 2001
+From b320dc9775599e3f585d335d366a662e95220306 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:57:35 +0200
 Subject: [PATCH] imx93-icore: port i.Core MX93 boards
@@ -702,7 +702,7 @@ index 00000000000..60a6a081182
 +	status = "okay";
 +};
 diff --git a/arch/arm/mach-imx/imx9/Kconfig b/arch/arm/mach-imx/imx9/Kconfig
-index 3a4d77f4f6b..db61d9c94d1 100644
+index 4a1b3734716..27d8bd5284f 100644
 --- a/arch/arm/mach-imx/imx9/Kconfig
 +++ b/arch/arm/mach-imx/imx9/Kconfig
 @@ -124,6 +124,11 @@ config TARGET_IMX91_9X9_QSB
@@ -717,7 +717,7 @@ index 3a4d77f4f6b..db61d9c94d1 100644
  config TARGET_IMX93_14X14_EVK
  	bool "imx93_14x14_evk"
  	select OF_BOARD_FIXUP
-@@ -251,6 +256,7 @@ config TARGET_IMX943_ORANGEBOX
+@@ -263,6 +268,7 @@ config TARGET_IMX943_ORANGEBOX
  
  endchoice
  

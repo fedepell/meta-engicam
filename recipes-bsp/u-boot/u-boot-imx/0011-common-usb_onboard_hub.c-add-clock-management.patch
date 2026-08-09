@@ -1,4 +1,4 @@
-From 5526a79f42d272ad602ddc6fc0f56700f6d5f2cc Mon Sep 17 00:00:00 2001
+From 9edff22c403bf1cef56d30d588d9d045a1ef3630 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:48:35 +0200
 Subject: [PATCH] common: usb_onboard_hub.c: add clock management

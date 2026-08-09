@@ -1,4 +1,4 @@
-From 82a921306dc8b98804ca71ef48c8c13d17988874 Mon Sep 17 00:00:00 2001
+From 3c679720ed6344461c8694966c32dccff5983d20 Mon Sep 17 00:00:00 2001
 From: engicam <support@engicam.com>
 Date: Thu, 9 Jul 2026 14:58:55 +0200
 Subject: [PATCH] imx91-microgea: port MicroGEA MX91 boards
@@ -260,7 +260,7 @@ index 9e393821a0c..a2d52c29efa 100644
  #define TRDC_WAKEUP_BASE	(0x42460000UL)
  #define TRDC_MEGA_BASE		(0x42810000UL)
 diff --git a/arch/arm/mach-imx/imx9/Kconfig b/arch/arm/mach-imx/imx9/Kconfig
-index db61d9c94d1..e3e3d1c6d7f 100644
+index 27d8bd5284f..23c2ee138ba 100644
 --- a/arch/arm/mach-imx/imx9/Kconfig
 +++ b/arch/arm/mach-imx/imx9/Kconfig
 @@ -79,6 +79,12 @@ choice
@@ -276,7 +276,7 @@ index db61d9c94d1..e3e3d1c6d7f 100644
  config TARGET_IMX91_11X11_EVK
  	bool "imx91_11x11_evk"
  	select OF_BOARD_FIXUP
-@@ -256,6 +262,7 @@ config TARGET_IMX943_ORANGEBOX
+@@ -268,6 +274,7 @@ config TARGET_IMX943_ORANGEBOX
  
  endchoice
  

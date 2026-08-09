@@ -1,10 +1,9 @@
-From bd5b1a41b01a9ddfb8a2721a34fa2c17a29c0487 Mon Sep 17 00:00:00 2001
+From 90af373f932eec42472871d537fa0e4e69c85227 Mon Sep 17 00:00:00 2001
 From: Matteo Lisi <matteo.lisi@engicam.com>
 Date: Fri, 19 Jun 2026 09:41:01 +0200
 Subject: [PATCH] added support for imx95 icore
 
 Upstream-Status: Pending
-
 ---
  arch/arm/dts/Makefile                     |   1 +
  arch/arm/dts/imx95-icore-u-boot.dtsi      | 238 ++++++++
@@ -31,11 +30,11 @@ Upstream-Status: Pending
  create mode 100644 include/configs/imx95_icore.h
 
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index 4e30f71ebee..041255a9d16 100644
+index 1d2c3156365..32ee19ae96a 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
-@@ -968,6 +968,7 @@ dtb-$(CONFIG_ARCH_IMX9) += \
- 	imx95-15x15-frdm.dtb \
+@@ -969,6 +969,7 @@ dtb-$(CONFIG_ARCH_IMX9) += \
+ 	imx95-19x19-frdm-pro.dtb \
  	imx95-19x19-verdin.dtb \
  	imx95-smarcore.dtb \
 +	imx95-icore.dtb \
@@ -711,10 +710,10 @@ index 00000000000..a76572542f1
 +	};
 +};
 diff --git a/arch/arm/mach-imx/imx9/Kconfig b/arch/arm/mach-imx/imx9/Kconfig
-index b5ad9197da1..3a4d77f4f6b 100644
+index 6a91baf4ebb..4a1b3734716 100644
 --- a/arch/arm/mach-imx/imx9/Kconfig
 +++ b/arch/arm/mach-imx/imx9/Kconfig
-@@ -225,6 +225,12 @@ config TARGET_IMX95_SMARCORE
+@@ -237,6 +237,12 @@ config TARGET_IMX95_SMARCORE
  	imply BOOTSTD_BOOTCOMMAND
  	imply BOOTSTD_FULL
  
@@ -727,7 +726,7 @@ index b5ad9197da1..3a4d77f4f6b 100644
  config TARGET_IMX943_EVK
  	bool "imx943_evk"
  	select IMX94
-@@ -260,5 +266,6 @@ source "board/toradex/verdin-imx95/Kconfig"
+@@ -272,5 +278,6 @@ source "board/toradex/verdin-imx95/Kconfig"
  source "board/freescale/imx94_evk/Kconfig"
  source "board/freescale/imx94_orangebox/Kconfig"
  source "board/engicam/imx95_smarcore/Kconfig"
