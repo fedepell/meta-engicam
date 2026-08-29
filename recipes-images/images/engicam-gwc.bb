@@ -150,6 +150,7 @@ IMAGE_INSTALL:append = " \
 	util-linux-wdctl \
 	util-linux-whereis \
 	kernel-devicetree \
+	rauc-hawkbit-updater \
 "
 # TO BE READDED possibly:
 #	usb-modeswitch //
