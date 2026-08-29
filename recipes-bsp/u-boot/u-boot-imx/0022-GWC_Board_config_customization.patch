@@ -35,7 +35,7 @@ diff -ruN u-boot-imx-2025.04/configs/microgea_mx6ull_sd_defconfig u-boot-imx-202
 +CONFIG_LZMA=y
 diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.04-b/include/configs/microgea-mx6ull.h
 --- u-boot-imx-2025.04/include/configs/microgea-mx6ull.h	2026-08-08 04:37:37.194850707 +0200
-+++ u-boot-imx-2025.04-b/include/configs/microgea-mx6ull.h	2026-08-09 06:33:56.032317054 +0200
++++ u-boot-imx-2025.04-b/include/configs/microgea-mx6ull.h	2026-08-29 06:29:24.370840199 +0200
 @@ -25,7 +25,7 @@
  #else
  #define BOOT_FDT "try"
@@ -55,7 +55,7 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
  
  #define CONFIG_CMD_READ
  #define CONFIG_SERIAL_TAG
-@@ -55,36 +56,65 @@
+@@ -55,36 +56,67 @@
  
  #if defined(CONFIG_NAND_BOOT)
  #define CFG_EXTRA_ENV_SETTINGS \
@@ -66,7 +66,7 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
 +	"BOOT_ORDER=rootfs.0 rootfs.1\0" \
 +	"BOOT_rootfs.0_LEFT=3\0" \
 +	"BOOT_rootfs.1_LEFT=3\0" \
-+	"fdt_file=/boot/microgea-mx6ull-gwcv4-dts1.dtb\0" \
++	"fdt_file=/boot/microgea-mx6ull-gwcv4-dts2.dtb\0" \
  	"fdt_addr=0x83000000\0" \
  	"fdt_high=0xffffffff\0"	  \
  	"tee_addr=0x84000000\0" \
@@ -75,6 +75,8 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
 -	"bootargs=console=ttymxc0,115200 ubi.mtd=nandrootfs "  \
 -		"root=ubi0:rootfs rootfstype=ubifs "		     \
 +	"rootpart=rootfs.0\0" \
++	"getpinval=mw.l 0x209C004 0x0;md.l 0x209c008 1;setexpr.b GWCHI *0x209c00b \\\\& 0xC0;setexpr GWCHW ${GWCHI} \\\\/ 0x20;setexpr.b GWCLO *0x209c00a \\\\\& 0x80;setexpr GWCHI ${GWCLO} \\\\/ 0x80;setexpr GWCHW ${GWCHW} \\\\+ ${GWCHI}; setexpr GWCHW ${GWCHW} \\\\+ 1\0" \
++	"setfdt=run getpinval;print GWCHW;setenv fdt_file \"/boot/microgea-mx6ull-gwcv4-dts${GWCHW}.dtb\";\0" \
 +	"setargs=setenv bootargs console=ttymxc0,115200 ubi.mtd=rootfs ubi.mtd=data root=ubi0:${rootpart} rootfstype=ubifs rauc.slot=${rootpart} " \
  		BOOTARGS_CMA_SIZE \
 -		MFG_NAND_PARTITION \
@@ -118,7 +120,7 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
 +		"saveenv; reset; " \
 +		"fi; " \
 +		"\0" \
-+	"bootcmd=run rauctest;" \
++	"bootcmd=run rauctest;run setfdt;" \
 +		"run loadfdt;run loadimage;run setargs;"\
 +		"bootm ${loadaddr} - ${fdt_addr};"\
 +		"\0"
@@ -132,11 +134,11 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
  	"fdt_high=0xffffffff\0" \
  	"initrd_high=0xffffffff\0" \
 -	"fdt_file=imx6ull-microgea-microdev-rev3.dtb\0" \
-+	"fdt_file=microgea-mx6ull-gwcv4-dts1.dtb\0" \
++	"fdt_file=microgea-mx6ull-gwcv4-dts2.dtb\0" \
  	"fdt_addr=0x83000000\0" \
  	"tee_addr=0x84000000\0" \
  	"tee_file=undefined\0" \
-@@ -98,7 +128,7 @@
+@@ -98,7 +130,7 @@
  	"mmcautodetect=yes\0" \
  	"mmcargs=setenv bootargs console=${console},${baudrate} " \
  		BOOTARGS_CMA_SIZE \
@@ -145,7 +147,7 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
  		" root=${mmcroot}\0" \
  	"loadbootscript=" \
  		"fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${script};\0" \
-@@ -110,10 +140,10 @@
+@@ -110,10 +142,10 @@
  		"run mmcargs; " \
  		"if test ${boot_fdt} = yes || test ${boot_fdt} = try; then " \
  			"if run loadfdt; then " \
@@ -158,7 +160,7 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
  				"else " \
  					"echo WARN: Cannot load the DT; " \
  				"fi; " \
-@@ -121,7 +151,7 @@
+@@ -121,7 +153,7 @@
  		"else if test ${boot_fit} = yes; then " \
  			"bootm; " \
  		"else " \
@@ -167,7 +169,7 @@ diff -ruN u-boot-imx-2025.04/include/configs/microgea-mx6ull.h u-boot-imx-2025.0
  		"fi;fi;\0" \
  	"netargs=setenv bootargs console=${console},${baudrate} " \
  		BOOTARGS_CMA_SIZE \
-@@ -143,16 +173,16 @@
+@@ -143,16 +175,16 @@
  		"else " \
  			"if test ${boot_fdt} = yes || test ${boot_fdt} = try; then " \
  				"if ${get_cmd} ${fdt_addr} ${fdt_file}; then " \

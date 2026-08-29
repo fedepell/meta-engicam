@@ -90,8 +90,25 @@
 };
 
 &cpu0 {
-	arm-supply = <&reg_arm>;
-	soc-supply = <&reg_soc>;
+	/*
+	 * on i.MX6ULL, no separated VDD_ARM_IN and VDD_SOC_IN,
+	 * to align with other platform and use the same cpufreq
+	 * driver, still use the separated OPP define for arm
+	 * and soc.
+	 */
+	operating-points = <
+		/* kHz	uV */
+		792000  1225000
+		396000	1175000
+		198000	1175000
+	>;
+	fsl,soc-operating-points = <
+		/* KHz	uV */
+		792000  1225000
+		396000	1175000
+		198000	1175000
+	>;
+	fsl,arm-soc-shared = <1>;
 };
 
 &fec1 {
@@ -99,14 +116,6 @@
 	pinctrl-0 = <&pinctrl_enet1>;
 	phy-mode = "rmii";
 	phy-handle = <&ethphy0>;
-	status = "okay";
-};
-
-&fec2 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_enet2>;
-	phy-mode = "rmii";
-	phy-handle = <&ethphy1>;
 	status = "okay";
 
 	mdio {
@@ -122,19 +131,8 @@
 			reset-assert-us = <1000>;
 			reset-deassert-us = <1000>;
 		};
-
-		ethphy1: ethernet-phy@1 {
-			compatible = "ethernet-phy-ieee802.3-c22";
-			smsc,disable-energy-detect;
-			reg = <1>;
-			reset-names = "phy1";
-			reset-gpios = <&gpio2 15 GPIO_ACTIVE_LOW>;
-			reset-assert-us = <1000>;
-			reset-deassert-us = <1000>;
-		};
 	};
 };
-
 
 &can1 {
 	pinctrl-names = "default";
@@ -149,7 +147,6 @@
 	num-channels = <3>;
 	status = "okay";
 };
-
 
 &gpc {
 	fsl,cpu_pupscr_sw2iso = <0x2>;
@@ -344,14 +341,14 @@
 		>;
 	};
 
-
 	pinctrl_adc1: adc1grp {
 		fsl,pins = <
-			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02			0xb0    
-			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04			0xb0
-			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09			0xb0
+			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02                        0xb0
+			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04                        0xb0
+			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09                        0xb0
 		>;
 	};
+
 
 		pinctrl_enet1: enet1grp {
 			fsl,pins = <
@@ -361,25 +358,12 @@
 				MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN				0x1b0b0
 				MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00		0x1b0b0
 				MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01		0x1b0b0
-				MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1		0x4001b011 /* HIGECO - Changed to fix issue with eth noise */
+				MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1		0x4001b031
+
+				MX6UL_PAD_GPIO1_IO07__ENET1_MDC						0x1b0b0
+				MX6UL_PAD_GPIO1_IO06__ENET1_MDIO					0x1b0b0
 
 				MX6UL_PAD_SNVS_TAMPER9__GPIO5_IO09			0x1b0b0		/* ENET_nRST */
-			>;
-		};
-
-		pinctrl_enet2: enet2grp {
-			fsl,pins = <
-				MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN					0x1b0b0
-				MX6UL_PAD_ENET2_RX_ER__GPIO2_IO15					0x17058		/* ENET_nRST */
-				MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00					0x1b0b0
-				MX6UL_PAD_ENET2_RX_DATA1__ENET2_RDATA01					0x1b0b0
-				MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN					0x1b0b0
-				MX6UL_PAD_ENET2_TX_DATA0__ENET2_TDATA00					0x1b0b0
-				MX6UL_PAD_ENET2_TX_DATA1__ENET2_TDATA01					0x1b0b0
-				MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2					0x4001b011 /* HIGECO - Changed to fix issue with eth noise */
-
-				MX6UL_PAD_GPIO1_IO07__ENET2_MDC							0x1b0b0
-				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO						0x1b0b0
 			>;
 		};
 
