@@ -11,17 +11,7 @@ diff -ruN u-boot-eng/arch/arm/dts/microgea-mx6ull.dts u-boot-eng-b/arch/arm/dts/
  &iomuxc {
 diff -ruN u-boot-eng/configs/microgea_mx6ull_nand_defconfig u-boot-eng-b/configs/microgea_mx6ull_nand_defconfig
 --- u-boot-eng/configs/microgea_mx6ull_nand_defconfig	2026-05-23 08:59:07.951308355 +0200
-+++ u-boot-eng-b/configs/microgea_mx6ull_nand_defconfig	2026-06-09 08:35:46.834299062 +0200
-@@ -59,3 +59,6 @@
- CONFIG_MXC_UART=y
- CONFIG_IMX_THERMAL=y
- CONFIG_USB=y
-+CONFIG_CMD_UBI=y
-+CONFIG_CMD_UBIFS=y
-+CONFIG_MTDPARTS=y
-diff -ruN u-boot-eng/configs/microgea_mx6ull_sd_defconfig u-boot-eng-b/configs/microgea_mx6ull_sd_defconfig
---- u-boot-eng/configs/microgea_mx6ull_sd_defconfig	2026-05-23 08:59:07.951308355 +0200
-+++ u-boot-eng-b/configs/microgea_mx6ull_sd_defconfig	2026-06-09 08:35:50.703339247 +0200
++++ u-boot-eng-b/configs/microgea_mx6ull_nand_defconfig	2026-06-20 08:08:52.048983018 +0200
 @@ -59,3 +59,7 @@
  CONFIG_MXC_UART=y
  CONFIG_IMX_THERMAL=y
@@ -29,6 +19,18 @@ diff -ruN u-boot-eng/configs/microgea_mx6ull_sd_defconfig u-boot-eng-b/configs/m
 +CONFIG_CMD_UBI=y
 +CONFIG_CMD_UBIFS=y
 +CONFIG_MTDPARTS=y
++CONFIG_LZMA=y
+diff -ruN u-boot-eng/configs/microgea_mx6ull_sd_defconfig u-boot-eng-b/configs/microgea_mx6ull_sd_defconfig
+--- u-boot-eng/configs/microgea_mx6ull_sd_defconfig	2026-05-23 08:59:07.951308355 +0200
++++ u-boot-eng-b/configs/microgea_mx6ull_sd_defconfig	2026-06-20 08:08:57.639217943 +0200
+@@ -59,3 +59,8 @@
+ CONFIG_MXC_UART=y
+ CONFIG_IMX_THERMAL=y
+ CONFIG_USB=y
++CONFIG_CMD_UBI=y
++CONFIG_CMD_UBIFS=y
++CONFIG_MTDPARTS=y
++CONFIG_LZMA=y
 +
 diff -ruN u-boot-eng/include/configs/microgea-mx6ull.h u-boot-eng-b/include/configs/microgea-mx6ull.h
 --- u-boot-eng/include/configs/microgea-mx6ull.h	2026-06-09 08:27:21.110811258 +0200

@@ -5,7 +5,8 @@ include conf/machine/include/imx-base.inc
 include conf/machine/include/arm/armv7a/tune-cortexa7.inc
 
 
-IMAGE_FSTYPES = "tar.bz2 ext4 ubifs wic.gz"
+IMAGE_FSTYPES = "tar.bz2 ext4 ubifs wic.gz erofs"
+EXTRA_IMAGECMD:erofs = "-z lzma"
 
 MACHINE_FEATURES += "wifi"
 KERNEL_IMAGETYPE = "uImage"
